@@ -689,3 +689,142 @@ document.addEventListener("DOMContentLoaded", () => {
 
   });
 });
+async function handleFormSubmit(event) {
+  event.preventDefault(); // ❗ stop page reload
+
+  const name = document.getElementById("msgName").value;
+  const email = document.getElementById("msgEmail").value;
+  const phone = document.getElementById("msgPhone").value;
+  const message = document.getElementById("msgText").value;
+
+  // validation
+  if (!name || !email || !message) {
+    alert("Please fill all required fields ❗");
+    return;
+  }
+
+  // insert into Supabase
+  const { error } = await supabaseClient
+    .from("contacts")
+    .insert([
+      {
+        full_name: name,
+        email: email,
+        phone: phone,
+        message: message
+      }
+    ]);
+
+  if (error) {
+    alert("Error ❌ " + error.message);
+    console.log(error);
+  } else {
+    alert("Message sent successfully 🚀");
+
+    // clear form
+    document.getElementById("contactForm").reset();
+  }
+}
+document.getElementById("signupForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const name = e.target.querySelector('input[type="text"]').value;
+  const email = e.target.querySelector('input[type="email"]').value;
+  const password = e.target.querySelector('input[type="password"]').value;
+
+  const { data, error } = await supabaseClient.auth.signUp({
+    email,
+    password,
+    options: {
+      data: { full_name: name }
+    }
+  });
+
+  if (error) {
+    alert(error.message);
+  } else {
+    alert("Signup successful 🎉 Check your email");
+  }
+});
+document.getElementById("loginForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const email = e.target.querySelector('input[type="email"]').value;
+  const password = e.target.querySelector('input[type="password"]').value;
+
+  const { data, error } = await supabaseClient.auth.signInWithPassword({
+    email,
+    password
+  });
+
+  if (error) {
+    alert(error.message);
+  } else {
+    alert("Login successful 🎉");
+    location.reload();
+  }
+});
+document.addEventListener("DOMContentLoaded", () => {
+
+  async function checkUser() {
+    const { data: { user } } = await supabaseClient.auth.getUser();
+    return user;
+  }
+
+  async function updateNavbar() {
+    const user = await checkUser();
+    const nav = document.querySelector(".nav-auth");
+
+    if (user) {
+      nav.innerHTML = `
+        <span style="color:#c9a84c;">👤 ${user.email}</span>
+        <button onclick="logout()">Logout</button>
+      `;
+    }
+  }
+
+  updateNavbar();
+
+  // make logout global (important for onclick)
+  window.logout = async function () {
+    await supabaseClient.auth.signOut();
+    location.reload();
+  };
+
+});
+function openModal(id) {
+  document.getElementById(id).style.display = "block";
+}
+
+function closeModal(id) {
+  document.getElementById(id).style.display = "none";
+}
+function switchToLogin() {
+  closeModal('signupModal');
+  openModal('loginModal');
+}
+document.querySelector(".google-btn").addEventListener("click", async () => {
+  const { error } = await supabaseClient.auth.signInWithOAuth({
+    provider: "google"
+  });
+
+  if (error) {
+    alert(error.message);
+  }
+});
+supabaseClient.auth.onAuthStateChange((event, session) => {
+  if (session) {
+    updateNavbar();
+  }
+});
+async function signInWithGoogle() {
+  const { data, error } = await supabaseClient.auth.signInWithOAuth({
+    provider: 'google',
+    options: {
+      redirectTo: 'http://127.0.0.1:5500'
+    }
+  });
+
+  if (error) console.error(error);
+}
+

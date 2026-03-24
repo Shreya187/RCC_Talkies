@@ -78,6 +78,65 @@
   <button class="hamburger" id="hamburger">&#9776;</button>
 </nav>
 
+
+
+<div id="signupModal" class="modal">
+  <div class="auth-card">
+    
+    <span class="close" onclick="closeModal('signupModal')">&times;</span>
+
+    <img src="assets/images/rcc-logo.png" class="auth-logo" />
+
+    <h2>Join RCC Talkies</h2>
+    <p>Create your account to stay updated</p>
+
+     
+
+    <form id="signupForm">
+      <input type="text" id="signupName" placeholder="Your full name" required />
+      <input type="email" id="signupEmail" placeholder="your@email.com" required />
+      <input type="password" id="signupPassword" placeholder="Password" required />
+      
+      <button type="submit" class="auth-btn">Create Account</button>
+    </form>
+
+    <p class="auth-footer">
+      Already have an account? <span onclick="switchToLogin()">Login</span>
+    </p>
+
+  </div>
+</div>
+<!-- LOGIN MODAL -->
+<div id="loginModal" class="modal">
+  <div class="auth-card">
+    
+    <span class="close" onclick="closeModal('loginModal')">&times;</span>
+
+    <img src="assets/images/rcc-logo.png" class="auth-logo" />
+
+    <h2>Join RCC Talkies</h2>
+    <p>Login your account to stay updated</p>
+
+    
+
+    
+
+
+    <form id="loginForm">
+      <input type="text" id="loginName" placeholder="Your full name" required />
+      <input type="email" id="loginEmail" placeholder="your@email.com" required />
+      <input type="password" id="loginPassword" placeholder="Password" required />
+      
+      <button type="submit" class="auth-btn">Login</button>
+    </form>
+
+    <p class="auth-footer">
+      Don't have an account? <span onclick="switchToSignup()">Sign Up</span>
+    </p>
+
+  </div>
+</div>
+
 <!-- ============================================================
      HERO SECTION
      ============================================================ -->
@@ -765,10 +824,7 @@
       <h2>Welcome Back</h2>
       <p>Sign in to your RCC Talkies account</p>
     </div>
-    <button class="btn-google" onclick="handleGoogleAuth()">
-      <svg width="20" height="20" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
-      Continue with Google
-    </button>
+   
     <div class="modal-divider">or</div>
     <form onsubmit="handleLogin(event)">
       <div class="form-group">
@@ -794,11 +850,8 @@
       <h2>Join RCC Talkies</h2>
       <p>Create your account to stay updated</p>
     </div>
-    <button class="btn-google" onclick="handleGoogleAuth()">
-      <svg width="20" height="20" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
-      Sign up with Google
-    </button>
-    <div class="modal-divider">or</div>
+    
+   
     <form onsubmit="handleSignup(event)">
       <div class="form-group">
         <label>Full Name</label>
@@ -877,9 +930,26 @@
   </div>
 </div>
 
+
 <!-- Toast Notification -->
 <div class="toast" id="toast"></div>
 
+<script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+<script src="assets/js/supabase.js"></script>
 <script src="assets/js/main.js"></script>
+
+
+
+<!-- 1. Supabase CDN -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<!-- 2. Initialize Supabase -->
+<script>
+const supabaseClient = window.supabase.createClient(
+  "https://aqpnbdyrxxjkjalnqgty.supabase.co",
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFxcG5iZHlyeHhqa2phbG5xZ3R5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQwMjE5MzQsImV4cCI6MjA4OTU5NzkzNH0.5BLsC1b3hhkiR2Mh99t1Qi448Kc3Ai3DvMCvejuYq7o"
+);
+</script>
+
 </body>
 </html>
