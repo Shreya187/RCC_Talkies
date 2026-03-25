@@ -381,8 +381,8 @@
           is a testament to student creativity.
         </p>
 
-        <!-- ✅ BUTTON -->
-        <button class="btn-pdf" onclick="openPDF()">
+        <!-- ❌ PDF REMOVED FROM HERE -->
+        <button class="btn-pdf">
           Read Magazine <span>📄</span>
         </button>
       </div>
@@ -406,7 +406,8 @@
           proud this year.
         </p>
 
-        <button class="btn-pdf">
+        <!-- ✅ PDF ADDED HERE -->
+        <button class="btn-pdf" onclick="openPDF()">
           Read Magazine <span>📄</span>
         </button>
       </div>
@@ -423,43 +424,6 @@
 
   </div>
 </section>
-
-
-<!-- ============================================================
-     PDF MODAL (GOOGLE DRIVE EMBED)
-     ============================================================ -->
-<div id="pdfModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:#000000cc; z-index:9999;">
-  
-  <div style="position:relative; width:80%; height:90%; margin:3% auto; background:#fff; border-radius:10px; overflow:hidden;">
-    
-    <!-- Close Button -->
-    <span onclick="closePDF()" 
-          style="position:absolute; top:10px; right:20px; font-size:30px; cursor:pointer; z-index:10;">
-      &times;
-    </span>
-
-    <!-- ✅ WORKING PDF (Google Drive Embed) -->
-    <iframe src="https://drive.google.com/file/d/1ZkPXO4u8fEg17VuH0nf5ND19pkq8ozi7/preview"
-            style="width:100%; height:100%; border:none;">
-    </iframe>
-
-  </div>
-
-</div>
-
-
-<!-- ============================================================
-     JAVASCRIPT
-     ============================================================ -->
-<script>
-function openPDF() {
-  document.getElementById("pdfModal").style.display = "block";
-}
-
-function closePDF() {
-  document.getElementById("pdfModal").style.display = "none";
-}
-</script>
 <!-- ============================================================
      REPORTS SECTION
      ============================================================ -->
