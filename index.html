@@ -1,364 +1,391 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>RCC Talkies – The Voice of RCCIIT</title>
-  <meta name="description" content="RCC Talkies is the official journalism club of RCC Institute of Information Technology, Kolkata. Stay updated with campus news, events, and more." />
+  <meta name="description"
+    content="RCC Talkies is the official journalism club of RCC Institute of Information Technology, Kolkata. Stay updated with campus news, events, and more." />
   <link rel="icon" href="assets/images/rcc-logo.png" type="image/png" />
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@300;400;500;600;700&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@300;400;500;600;700&family=Courier+Prime:wght@400;700&display=swap"
+    rel="stylesheet" />
   <link rel="stylesheet" href="assets/css/style.css" />
 </head>
+
 <body>
   <div class="newspaper-bg"></div>
 
-<!-- ============================================================
+  <!-- ============================================================
      ANIMATED 3D NEWSPAPER BACKGROUND
      ============================================================ -->
-<div class="newspaper-bg" id="newspaperBg">
-  <div class="paper-plane paper-plane-1"></div>
-  <div class="paper-plane paper-plane-2"></div>
-  <div class="paper-plane paper-plane-3"></div>
-  <canvas id="newspaper3D"></canvas>
-  <!-- floating text snippets -->
-  <div class="floating-headline" style="--delay:0s;--x:5%;--y:10%">BREAKING NEWS</div>
-  <div class="floating-headline" style="--delay:1.5s;--x:80%;--y:15%">CAMPUS STORIES</div>
-   <div class="floating-headline" style="--delay:3s;--x:20%;--y:80%">JOURNALISM CLUB</div>
-  <div class="floating-headline" style="--delay:2s;--x:70%;--y:75%">RCCIIT TIMES</div>
-  <div class="floating-headline" style="--delay:4s;--x:50%;--y:50%">THE PRESS</div>
-  <div class="floating-headline" style="--delay:0.5s;--x:90%;--y:45%">LIVE REPORTS</div>
-</div>
+  <div class="newspaper-bg" id="newspaperBg">
+    <div class="paper-plane paper-plane-1"></div>
+    <div class="paper-plane paper-plane-2"></div>
+    <div class="paper-plane paper-plane-3"></div>
+    <canvas id="newspaper3D"></canvas>
+    <!-- floating text snippets -->
+    <div class="floating-headline" style="--delay:0s;--x:5%;--y:10%">BREAKING NEWS</div>
+    <div class="floating-headline" style="--delay:1.5s;--x:80%;--y:15%">CAMPUS STORIES</div>
+    <div class="floating-headline" style="--delay:3s;--x:20%;--y:80%">JOURNALISM CLUB</div>
+    <div class="floating-headline" style="--delay:2s;--x:70%;--y:75%">RCCIIT TIMES</div>
+    <div class="floating-headline" style="--delay:4s;--x:50%;--y:50%">THE PRESS</div>
+    <div class="floating-headline" style="--delay:0.5s;--x:90%;--y:45%">LIVE REPORTS</div>
+  </div>
 
-<!-- ============================================================
+  <!-- ============================================================
      NAVBAR
      ============================================================ -->
-<nav class="navbar" id="navbar">
-  <div class="nav-brand">
-    <img src="assets/images/rcc-logo.png" alt="RCC Talkies Logo" class="nav-logo" />
-    <span class="nav-title">RCC TALKIES</span>
+  <nav class="navbar" id="navbar">
+    <div class="nav-brand">
+      <img src="assets/images/rcc-logo.png" alt="RCC Talkies Logo" class="nav-logo" />
+      <span class="nav-title">RCC TALKIES</span>
+    </div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home" class="nav-link">Home</a></li>
+      <li><a href="#college" class="nav-link">College</a></li>
+      <li><a href="#about-club" class="nav-link">About Club</a></li>
+      <li><a href="#clubs" class="nav-link">Clubs</a></li>
+      <li><a href="#posters" class="nav-link">Posters</a></li>
+      <li><a href="#magazine" class="nav-link">Magazine</a></li>
+      <li><a href="#reports" class="nav-link">Reports</a></li>
+      <li class="dropdown">
+        <a href="#events" class="nav-link dropdown-toggle">Events ▾</a>
+        <ul class="dropdown-menu">
+          <li class="dropdown-sub">
+            <a href="#internal-events">Internal Events ▸</a>
+            <ul class="dropdown-menu sub-menu">
+              <li><a href="#got">GOT – Sports Fest</a></li>
+              <li><a href="#techtrix">TechTrix – Tech Fest</a></li>
+              <li><a href="#regalia">Regalia – Cultural Fest</a></li>
+            </ul>
+          </li>
+          <li><a href="#external-events">External Events</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="#members" class="nav-link dropdown-toggle">Members ▾</a>
+        <ul class="dropdown-menu">
+          <li><a href="#core">Core Members</a></li>
+          <li><a href="#subcore">Sub-Core Members</a></li>
+          <li><a href="#faculty">Faculty Advisors</a></li>
+        </ul>
+      </li>
+      <li><a href="#contact" class="nav-link">Contact</a></li>
+    </ul>
+    <div class="nav-auth">
+      <button class="btn-login" onclick="openModal('loginModal')">Login</button>
+      <button class="btn-signup" onclick="openModal('signupModal')">Sign Up</button>
+    </div>
+    <button class="hamburger" id="hamburger">&#9776;</button>
+  </nav>
+
+
+
+  <div id="signupModal" class="modal">
+    <div class="auth-card">
+
+      <span class="close" onclick="closeModal('signupModal')">&times;</span>
+
+      <img src="assets/images/rcc-logo.png" class="auth-logo" />
+
+      <h2>Join RCC Talkies</h2>
+      <p>Create your account to stay updated</p>
+
+
+
+      <form id="signupForm">
+        <input type="text" id="signupName" placeholder="Your full name" required />
+        <input type="email" id="signupEmail" placeholder="your@email.com" required />
+        <input type="password" id="signupPassword" placeholder="Password" required />
+
+        <button type="submit" class="auth-btn">Create Account</button>
+      </form>
+
+      <p class="auth-footer">
+        Already have an account? <span onclick="switchToLogin()">Login</span>
+      </p>
+
+    </div>
   </div>
-  <ul class="nav-links" id="navLinks">
-    <li><a href="#home" class="nav-link">Home</a></li>
-    <li><a href="#college" class="nav-link">College</a></li>
-    <li><a href="#about-club" class="nav-link">About Club</a></li>
-    <li><a href="#clubs" class="nav-link">Clubs</a></li>
-    <li><a href="#posters" class="nav-link">Posters</a></li>
-    <li><a href="#magazine" class="nav-link">Magazine</a></li>
-    <li><a href="#reports" class="nav-link">Reports</a></li>
-    <li class="dropdown">
-      <a href="#events" class="nav-link dropdown-toggle">Events ▾</a>
-      <ul class="dropdown-menu">
-        <li class="dropdown-sub">
-          <a href="#internal-events">Internal Events ▸</a>
-          <ul class="dropdown-menu sub-menu">
-            <li><a href="#got">GOT – Sports Fest</a></li>
-            <li><a href="#techtrix">TechTrix – Tech Fest</a></li>
-            <li><a href="#regalia">Regalia – Cultural Fest</a></li>
-          </ul>
-        </li>
-        <li><a href="#external-events">External Events</a></li>
-      </ul>
-    </li>
-    <li class="dropdown">
-      <a href="#members" class="nav-link dropdown-toggle">Members ▾</a>
-      <ul class="dropdown-menu">
-        <li><a href="#core">Core Members</a></li>
-        <li><a href="#subcore">Sub-Core Members</a></li>
-        <li><a href="#faculty">Faculty Advisors</a></li>
-      </ul>
-    </li>
-    <li><a href="#contact" class="nav-link">Contact</a></li>
-  </ul>
-  <div class="nav-auth">
-    <button class="btn-login" onclick="openModal('loginModal')">Login</button>
-    <button class="btn-signup" onclick="openModal('signupModal')">Sign Up</button>
+  <!-- LOGIN MODAL -->
+  <div id="loginModal" class="modal">
+    <div class="auth-card">
+
+      <span class="close" onclick="closeModal('loginModal')">&times;</span>
+
+      <img src="assets/images/rcc-logo.png" class="auth-logo" />
+
+      <h2>Join RCC Talkies</h2>
+      <p>Login your account to stay updated</p>
+
+
+
+
+
+
+      <form id="loginForm">
+        <input type="text" id="loginName" placeholder="Your full name" required />
+        <input type="email" id="loginEmail" placeholder="your@email.com" required />
+        <input type="password" id="loginPassword" placeholder="Password" required />
+
+        <button type="submit" class="auth-btn">Login</button>
+      </form>
+
+      <p class="auth-footer">
+        Don't have an account? <span onclick="switchToSignup()">Sign Up</span>
+      </p>
+
+    </div>
   </div>
-  <button class="hamburger" id="hamburger">&#9776;</button>
-</nav>
 
-
-
-<div id="signupModal" class="modal">
-  <div class="auth-card">
-    
-    <span class="close" onclick="closeModal('signupModal')">&times;</span>
-
-    <img src="assets/images/rcc-logo.png" class="auth-logo" />
-
-    <h2>Join RCC Talkies</h2>
-    <p>Create your account to stay updated</p>
-
-     
-
-    <form id="signupForm">
-      <input type="text" id="signupName" placeholder="Your full name" required />
-      <input type="email" id="signupEmail" placeholder="your@email.com" required />
-      <input type="password" id="signupPassword" placeholder="Password" required />
-      
-      <button type="submit" class="auth-btn">Create Account</button>
-    </form>
-
-    <p class="auth-footer">
-      Already have an account? <span onclick="switchToLogin()">Login</span>
-    </p>
-
-  </div>
-</div>
-<!-- LOGIN MODAL -->
-<div id="loginModal" class="modal">
-  <div class="auth-card">
-    
-    <span class="close" onclick="closeModal('loginModal')">&times;</span>
-
-    <img src="assets/images/rcc-logo.png" class="auth-logo" />
-
-    <h2>Join RCC Talkies</h2>
-    <p>Login your account to stay updated</p>
-
-    
-
-    
-
-
-    <form id="loginForm">
-      <input type="text" id="loginName" placeholder="Your full name" required />
-      <input type="email" id="loginEmail" placeholder="your@email.com" required />
-      <input type="password" id="loginPassword" placeholder="Password" required />
-      
-      <button type="submit" class="auth-btn">Login</button>
-    </form>
-
-    <p class="auth-footer">
-      Don't have an account? <span onclick="switchToSignup()">Sign Up</span>
-    </p>
-
-  </div>
-</div>
-
-<!-- ============================================================
+  <!-- ============================================================
      HERO SECTION
      ============================================================ -->
-<section class="hero" id="home">
-  <div class="hero-content">
-    <div class="logo-float-wrapper">
-      <img src="assets/images/rcc-logo.png" alt="RCC Talkies" class="hero-logo" />
-      <div class="logo-ring ring-1"></div>
-      <div class="logo-ring ring-2"></div>
-      <div class="logo-ring ring-3"></div>
-    </div>
-    <h1 class="hero-title">
-      <span class="hero-word">RCC</span>
-      <span class="hero-word accent">TALKIES</span>
-    </h1>
-    <p class="hero-tagline">The Voice of <strong>RCCIIT</strong> — where stories come alive</p>
-    <div class="ticker-wrap">
-      <div class="ticker-text" id="tickerText">
-        📰 Breaking: TechTrix 2025 registration now open &nbsp;•&nbsp; 🏆 GOT Champions announced &nbsp;•&nbsp; 🎭 Regalia 2025 – Save the date &nbsp;•&nbsp; 📚 New magazine edition released &nbsp;•&nbsp; 🎓 Campus placement drive begins &nbsp;•&nbsp;
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <div class="logo-float-wrapper">
+        <img src="assets/images/rcc-logo.png" alt="RCC Talkies" class="hero-logo" />
+        <div class="logo-ring ring-1"></div>
+        <div class="logo-ring ring-2"></div>
+        <div class="logo-ring ring-3"></div>
       </div>
+      <h1 class="hero-title">
+        <span class="hero-word">RCC</span>
+        <span class="hero-word accent">TALKIES</span>
+      </h1>
+      <p class="hero-tagline">The Voice of <strong>RCCIIT</strong> — where stories come alive</p>
+      <div class="ticker-wrap">
+        <div class="ticker-text" id="tickerText">
+          📰 Breaking: TechTrix 2025 registration now open &nbsp;•&nbsp; 🏆 GOT Champions announced &nbsp;•&nbsp; 🎭
+          Regalia 2025 – Save the date &nbsp;•&nbsp; 📚 New magazine edition released &nbsp;•&nbsp; 🎓 Campus placement
+          drive begins &nbsp;•&nbsp;
+        </div>
+      </div>
+      <a href="#college" class="btn-get-started">Get Started <span class="btn-arrow">→</span></a>
     </div>
-    <a href="#college" class="btn-get-started">Get Started <span class="btn-arrow">→</span></a>
-  </div>
-  <div class="hero-particles" id="particles"></div>
-</section>
+    <div class="hero-particles" id="particles"></div>
+  </section>
 
-<!-- ============================================================
+  <!-- ============================================================
      COLLEGE SECTION
      ============================================================ -->
-<section class="section college-section" id="college">
-  <div class="section-label">OUR INSTITUTION</div>
-  <div class="college-grid">
-    <div class="college-img-wrapper">
-      <img src="assets/images/rcc-college.jpg" alt="RCCIIT Campus" class="college-img" />
-      <div class="img-badge">Est. 1999</div>
-    </div>
-    <div class="college-info">
-      <h2 class="section-title">RCC Institute of<br/><span class="accent">Information Technology</span></h2>
-      <p class="college-desc">
-        RCC Institute of Information Technology (RCCIIT) is a reputed engineering college located in Kolkata. It was established in 1999 with the aim of providing quality technical education in the fields of engineering and information technology.
-      </p>
-      <p class="college-desc">
-        The institute is affiliated with <strong>Maulana Abul Kalam Azad University of Technology (MAKAUT)</strong> and offers several undergraduate and postgraduate courses such as B.Tech, BCA, and MCA in different technical disciplines.
-      </p>
-      <p class="college-desc">
-        RCCIIT focuses on developing students' technical knowledge, problem-solving ability, and practical skills through laboratory work, projects, and academic training. The institute also provides modern classrooms, computer laboratories, and a library.
-      </p>
-      <p class="college-desc">
-        The institute also encourages participation in cultural programs, technical events, and sports activities, preparing students for careers in engineering, information technology, and other technical fields.
-      </p>
-      <div class="college-stats">
-        <div class="stat-card"><span class="stat-num">25+</span><span class="stat-label">Years</span></div>
-        <div class="stat-card"><span class="stat-num">5000+</span><span class="stat-label">Alumni</span></div>
-        <div class="stat-card"><span class="stat-num">10+</span><span class="stat-label">Departments</span></div>
-        <div class="stat-card"><span class="stat-num">MAKAUT</span><span class="stat-label">Affiliated</span></div>
+  <section class="section college-section" id="college">
+    <div class="section-label">OUR INSTITUTION</div>
+    <div class="college-grid">
+      <div class="college-img-wrapper">
+        <img src="assets/images/rcc-college.jpg" alt="RCCIIT Campus" class="college-img" />
+        <div class="img-badge">Est. 1999</div>
+      </div>
+      <div class="college-info">
+        <h2 class="section-title">RCC Institute of<br /><span class="accent">Information Technology</span></h2>
+        <p class="college-desc">
+          RCC Institute of Information Technology (RCCIIT) is a reputed engineering college located in Kolkata. It was
+          established in 1999 with the aim of providing quality technical education in the fields of engineering and
+          information technology.
+        </p>
+        <p class="college-desc">
+          The institute is affiliated with <strong>Maulana Abul Kalam Azad University of Technology (MAKAUT)</strong>
+          and offers several undergraduate and postgraduate courses such as B.Tech, BCA, and MCA in different technical
+          disciplines.
+        </p>
+        <p class="college-desc">
+          RCCIIT focuses on developing students' technical knowledge, problem-solving ability, and practical skills
+          through laboratory work, projects, and academic training. The institute also provides modern classrooms,
+          computer laboratories, and a library.
+        </p>
+        <p class="college-desc">
+          The institute also encourages participation in cultural programs, technical events, and sports activities,
+          preparing students for careers in engineering, information technology, and other technical fields.
+        </p>
+        <div class="college-stats">
+          <div class="stat-card"><span class="stat-num">25+</span><span class="stat-label">Years</span></div>
+          <div class="stat-card"><span class="stat-num">5000+</span><span class="stat-label">Alumni</span></div>
+          <div class="stat-card"><span class="stat-num">10+</span><span class="stat-label">Departments</span></div>
+          <div class="stat-card"><span class="stat-num">MAKAUT</span><span class="stat-label">Affiliated</span></div>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ============================================================
+  <!-- ============================================================
      ABOUT CLUB SECTION
      ============================================================ -->
-<section class="section about-section" id="about-club">
-  <div class="section-label">ABOUT US</div>
-  <h2 class="section-title center-title">What is <span class="accent">RCC Talkies?</span></h2>
-  <div class="about-grid">
-    <div class="about-card">
-      <div class="about-icon">📰</div>
-      <h3>Campus News</h3>
-      <p>We cover all significant happenings inside RCCIIT campus — from exam schedules to placement news and faculty announcements.</p>
+  <section class="section about-section" id="about-club">
+    <div class="section-label">ABOUT US</div>
+    <h2 class="section-title center-title">What is <span class="accent">RCC Talkies?</span></h2>
+    <div class="about-grid">
+      <div class="about-card">
+        <div class="about-icon">📰</div>
+        <h3>Campus News</h3>
+        <p>We cover all significant happenings inside RCCIIT campus — from exam schedules to placement news and faculty
+          announcements.</p>
+      </div>
+      <div class="about-card">
+        <div class="about-icon">🎤</div>
+        <h3>Interviews & Reports</h3>
+        <p>In-depth interviews with students, faculty, and industry professionals. Detailed reports on college events
+          and achievements.</p>
+      </div>
+      <div class="about-card">
+        <div class="about-icon">📷</div>
+        <h3>Photography & Media</h3>
+        <p>Our photography and videography team captures every moment, from fests to seminars, preserving memories for
+          the community.</p>
+      </div>
+      <div class="about-card">
+        <div class="about-icon">📖</div>
+        <h3>Magazine & Posters</h3>
+        <p>We publish a quarterly magazine and eye-catching event posters, showcasing the vibrant life at RCCIIT.</p>
+      </div>
+      <div class="about-card">
+        <div class="about-icon">🌐</div>
+        <h3>Social Engagement</h3>
+        <p>Active presence across all social media platforms, keeping students updated and engaged at all times.</p>
+      </div>
+      <div class="about-card">
+        <div class="about-icon">🏆</div>
+        <h3>Awards & Recognition</h3>
+        <p>RCC Talkies has been recognized as one of the most active journalism clubs in Kolkata's engineering college
+          circuit.</p>
+      </div>
     </div>
-    <div class="about-card">
-      <div class="about-icon">🎤</div>
-      <h3>Interviews & Reports</h3>
-      <p>In-depth interviews with students, faculty, and industry professionals. Detailed reports on college events and achievements.</p>
-    </div>
-    <div class="about-card">
-      <div class="about-icon">📷</div>
-      <h3>Photography & Media</h3>
-      <p>Our photography and videography team captures every moment, from fests to seminars, preserving memories for the community.</p>
-    </div>
-    <div class="about-card">
-      <div class="about-icon">📖</div>
-      <h3>Magazine & Posters</h3>
-      <p>We publish a quarterly magazine and eye-catching event posters, showcasing the vibrant life at RCCIIT.</p>
-    </div>
-    <div class="about-card">
-      <div class="about-icon">🌐</div>
-      <h3>Social Engagement</h3>
-      <p>Active presence across all social media platforms, keeping students updated and engaged at all times.</p>
-    </div>
-    <div class="about-card">
-      <div class="about-icon">🏆</div>
-      <h3>Awards & Recognition</h3>
-      <p>RCC Talkies has been recognized as one of the most active journalism clubs in Kolkata's engineering college circuit.</p>
-    </div>
-  </div>
-</section>
+  </section>
 
-<!-- ============================================================
+  <!-- ============================================================
      CLUBS SECTION
      ============================================================ -->
-<section class="section dark-section" id="clubs">
-  <div class="section-label">OUR CAMPUS CLUBS</div>
-  <h2 class="section-title center-title">Explore <span class="accent">RCCIIT Clubs</span></h2>
-  <p class="section-subtitle">Click any club to explore their events, activities and achievements.</p>
+  <section class="section dark-section" id="clubs">
+    <div class="section-label">OUR CAMPUS CLUBS</div>
+    <h2 class="section-title center-title">Explore <span class="accent">RCCIIT Clubs</span></h2>
+    <p class="section-subtitle">Click any club to explore their events, activities and achievements.</p>
 
-  <div class="clubs-float-grid">
+    <div class="clubs-float-grid">
 
-    <!-- RCC Talkies -->
-    <div class="club-float-card" onclick="openClubModal('rcctalkies')">
-      <div class="club-logo-wrap">
-        <img src="assets/images/rcc-logo.png" alt="RCC Talkies" class="club-logo-img" />
-        <div class="club-ring cr1"></div><div class="club-ring cr2"></div>
+      <!-- RCC Talkies -->
+      <div class="club-float-card" onclick="openClubModal('rcctalkies')">
+        <div class="club-logo-wrap">
+          <img src="assets/images/rcc-logo.png" alt="RCC Talkies" class="club-logo-img" />
+          <div class="club-ring cr1"></div>
+          <div class="club-ring cr2"></div>
+        </div>
+        <h3>RCC Talkies</h3>
+        <p>Journalism Club</p>
       </div>
-      <h3>RCC Talkies</h3>
-      <p>Journalism Club</p>
-    </div>
 
-    <!-- RCC Techz -->
-    <div class="club-float-card" onclick="openClubModal('rcctechz')">
-      <div class="club-logo-wrap">
-        <img src="assets/images/rcctechz-logo.png" alt="RCC Techz" class="club-logo-img" />
-        <div class="club-ring cr1"></div><div class="club-ring cr2"></div>
+      <!-- RCC Techz -->
+      <div class="club-float-card" onclick="openClubModal('rcctechz')">
+        <div class="club-logo-wrap">
+          <img src="assets/images/rcctechz-logo.png" alt="RCC Techz" class="club-logo-img" />
+          <div class="club-ring cr1"></div>
+          <div class="club-ring cr2"></div>
+        </div>
+        <h3>RCC Techz</h3>
+        <p>Technology Club</p>
       </div>
-      <h3>RCC Techz</h3>
-      <p>Technology Club</p>
-    </div>
 
-    <!-- Ignitex -->
-    <div class="club-float-card" onclick="openClubModal('ignitex')">
-      <div class="club-logo-wrap">
-        <img src="assets/images/ignitex-logo.png" alt="Ignitex" class="club-logo-img" />
-        <div class="club-ring cr1"></div><div class="club-ring cr2"></div>
+      <!-- Ignitex -->
+      <div class="club-float-card" onclick="openClubModal('ignitex')">
+        <div class="club-logo-wrap">
+          <img src="assets/images/ignitex-logo.png" alt="Ignitex" class="club-logo-img" />
+          <div class="club-ring cr1"></div>
+          <div class="club-ring cr2"></div>
+        </div>
+        <h3>Ignitex</h3>
+        <p>Innovation Club</p>
       </div>
-      <h3>Ignitex</h3>
-      <p>Innovation Club</p>
-    </div>
 
-    <!-- GDG -->
-    <div class="club-float-card" onclick="openClubModal('gdg')">
-      <div class="club-logo-wrap">
-        <img src="assets/images/gdg-logo.png" alt="GDG" class="club-logo-img" />
-        <div class="club-ring cr1"></div><div class="club-ring cr2"></div>
+      <!-- GDG -->
+      <div class="club-float-card" onclick="openClubModal('gdg')">
+        <div class="club-logo-wrap">
+          <img src="assets/images/gdg-logo.png" alt="GDG" class="club-logo-img" />
+          <div class="club-ring cr1"></div>
+          <div class="club-ring cr2"></div>
+        </div>
+        <h3>GDG</h3>
+        <p>Google Dev Group</p>
       </div>
-      <h3>GDG</h3>
-      <p>Google Dev Group</p>
-    </div>
 
-    <!-- Art & Culture -->
-    <div class="club-float-card" onclick="openClubModal('artculture')">
-      <div class="club-logo-wrap">
-        <img src="assets/images/artculture-logo.png" alt="Art & Culture" class="club-logo-img" />
-        <div class="club-ring cr1"></div><div class="club-ring cr2"></div>
+      <!-- Art & Culture -->
+      <div class="club-float-card" onclick="openClubModal('artculture')">
+        <div class="club-logo-wrap">
+          <img src="assets/images/artculture-logo.png" alt="Art & Culture" class="club-logo-img" />
+          <div class="club-ring cr1"></div>
+          <div class="club-ring cr2"></div>
+        </div>
+        <h3>Art &amp; Culture</h3>
+        <p>Cultural Club</p>
       </div>
-      <h3>Art &amp; Culture</h3>
-      <p>Cultural Club</p>
-    </div>
 
+    </div>
+  </section>
+
+  <!-- Club Detail Modal -->
+  <div class="modal-overlay" id="clubModal">
+    <div class="modal-box club-modal-box">
+      <button class="modal-close" onclick="closeModal('clubModal')">✕</button>
+      <div class="club-modal-header">
+        <img id="clubModalLogo" src="" alt="Club Logo" class="club-modal-logo" />
+        <div>
+          <h2 id="clubModalName">Club Name</h2>
+          <p id="clubModalTagline" class="club-modal-tagline">Club tagline</p>
+        </div>
+      </div>
+      <p id="clubModalDesc" class="club-modal-desc"></p>
+      <h3 class="club-events-title">📸 Events &amp; Activities</h3>
+      <div class="club-events-grid" id="clubEventsGrid"></div>
+    </div>
   </div>
-</section>
 
-<!-- Club Detail Modal -->
-<div class="modal-overlay" id="clubModal">
-  <div class="modal-box club-modal-box">
-    <button class="modal-close" onclick="closeModal('clubModal')">✕</button>
-    <div class="club-modal-header">
-      <img id="clubModalLogo" src="" alt="Club Logo" class="club-modal-logo" />
-      <div>
-        <h2 id="clubModalName">Club Name</h2>
-        <p id="clubModalTagline" class="club-modal-tagline">Club tagline</p>
-      </div>
-    </div>
-    <p id="clubModalDesc" class="club-modal-desc"></p>
-    <h3 class="club-events-title">📸 Events &amp; Activities</h3>
-    <div class="club-events-grid" id="clubEventsGrid"></div>
-  </div>
-</div>
-
-<!-- ============================================================
+  <!-- ============================================================
      POSTERS SECTION
      ============================================================ -->
-<section class="section" id="posters">
-  <div class="section-label">VISUAL MEDIA</div>
-  <h2 class="section-title center-title">Event <span class="accent">Posters</span></h2>
-  <div class="admin-upload-area" id="posterUploadArea">
-    <div class="upload-placeholder">
-      <div class="upload-icon">🖼️</div>
-      <p>Posters will appear here once uploaded by the admin.</p>
-      <button class="btn-admin" onclick="openModal('adminUploadModal')">Upload Poster (Admin)</button>
-    </div>
-  </div>
-  <div class="poster-grid" id="posterGrid">
-    <!-- Posters will be dynamically added here -->
-    <div class="poster-card">
-      <div class="poster-img-placeholder">
-        <span>Poster 1</span>
-      <img src="assets/images/GOT.jpg" alt="GOT" />
+  <section class="section" id="posters">
+    <div class="section-label">VISUAL MEDIA</div>
+    <h2 class="section-title center-title">Event <span class="accent">Posters</span></h2>
+    <div class="admin-upload-area" id="posterUploadArea">
+      <div class="upload-placeholder">
+        <div class="upload-icon">🖼️</div>
+        <p>Posters will appear here once uploaded by the admin.</p>
+        <button class="btn-admin" onclick="openModal('adminUploadModal')">Upload Poster (Admin)</button>
       </div>
-      <p class="poster-desc">Sample poster description. Upload your event poster here with a detailed description for students.</p>
     </div>
-    <div class="poster-card">
-      <div class="poster-img-placeholder">
-        <span>Poster 2</span>
-        <img src="assets/images/techtrix poster.jpg" alt="techtrix" />
+    <div class="poster-grid" id="posterGrid">
+      <!-- Posters will be dynamically added here -->
+      <div class="poster-card">
+        <div class="poster-img-placeholder">
+          <span>Poster 1</span>
+          <img src="assets/images/GOT.jpg" alt="GOT" />
+        </div>
+        <p class="poster-desc">Sample poster description. Upload your event poster here with a detailed description for
+          students.</p>
       </div>
-      <p class="poster-desc">Another event poster with relevant details about the upcoming event, date, and venue information.</p>
-    </div>
-    <div class="poster-card">
-      <div class="poster-img-placeholder">
-        <span>Poster 3</span>
+      <div class="poster-card">
+        <div class="poster-img-placeholder">
+          <span>Poster 2</span>
+          <img src="assets/images/techtrix poster.jpg" alt="techtrix" />
+        </div>
+        <p class="poster-desc">Another event poster with relevant details about the upcoming event, date, and venue
+          information.</p>
       </div>
-      <p class="poster-desc">Cultural fest poster highlighting the key performances and guest appearances for the evening.</p>
+      <div class="poster-card">
+        <div class="poster-img-placeholder">
+          <span>Poster 3</span>
+        </div>
+        <p class="poster-desc">Cultural fest poster highlighting the key performances and guest appearances for the
+          evening.</p>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ============================================================
+  <!-- ============================================================
      MAGAZINE SECTION
      ============================================================ -->
 
+<<<<<<< HEAD
 <!-- ============================================================
      MAGAZINE SECTION
      ============================================================ -->
@@ -367,42 +394,74 @@
   <h2 class="section-title center-title">Our <span class="accent">Magazine</span></h2>
   
   <div class="magazine-grid">
+=======
+  <section class="section dark-section" id="magazine">
+    <div class="section-label">PUBLICATIONS</div>
+    <h2 class="section-title center-title">Our <span class="accent">Magazine</span></h2>
+>>>>>>> b8ba84b84dce04df6a2a2e96985e29a2d9e7e8b5
 
-    <!-- Magazine 1 -->
-    <div class="magazine-card">
-      <div class="magazine-cover">
-        <div class="magazine-cover-inner">
-          <div class="magazine-title-text">RCC TALKIES</div>
-          <div class="magazine-edition">Volume I · 2024</div>
-          <div class="magazine-cover-decor">◆◆◆</div>
+    <div class="magazine-grid">
+
+      <!-- Magazine 1 -->
+      <div class="magazine-card">
+        <div class="magazine-cover">
+          <div class="magazine-cover-inner">
+            <div class="magazine-title-text">RCC TALKIES</div>
+            <div class="magazine-edition">Volume I · 2024</div>
+            <div class="magazine-cover-decor">◆◆◆</div>
+          </div>
+        </div>
+
+        <div class="magazine-info">
+          <h3>Issue #1 – The Beginning</h3>
+          <p>
+            Our inaugural magazine captures the essence of life at RCCIIT.
+            From academic milestones to cultural celebrations, this edition
+            is a testament to student creativity.
+          </p>
+
+          <!-- ❌ PDF REMOVED FROM HERE -->
+          <button class="btn-pdf">
+            Read Magazine <span>📄</span>
+          </button>
         </div>
       </div>
 
-      <div class="magazine-info">
-        <h3>Issue #1 – The Beginning</h3>
-        <p>
-          Our inaugural magazine captures the essence of life at RCCIIT. 
-          From academic milestones to cultural celebrations, this edition 
-          is a testament to student creativity.
-        </p>
+      <!-- Magazine 2 -->
+      <div class="magazine-card">
+        <div class="magazine-cover" style="background: linear-gradient(135deg, #1a1a2e, #16213e);">
+          <div class="magazine-cover-inner">
+            <div class="magazine-title-text">RCC TALKIES</div>
+            <div class="magazine-edition">Volume II · 2025</div>
+            <div class="magazine-cover-decor">★★★</div>
+          </div>
+        </div>
 
+<<<<<<< HEAD
         <!-- ✅ BUTTON -->
         <button class="btn-pdf">
           Read Magazine <span>📄</span>
         </button>
       </div>
     </div>
+=======
+        <div class="magazine-info">
+          <h3>Issue #2 – Tech & Culture</h3>
+          <p>
+            The second edition dives into the world of technology fests,
+            cultural programs, and the stories of students who made RCCIIT
+            proud this year.
+          </p>
+>>>>>>> b8ba84b84dce04df6a2a2e96985e29a2d9e7e8b5
 
-    <!-- Magazine 2 -->
-    <div class="magazine-card">
-      <div class="magazine-cover" style="background: linear-gradient(135deg, #1a1a2e, #16213e);">
-        <div class="magazine-cover-inner">
-          <div class="magazine-title-text">RCC TALKIES</div>
-          <div class="magazine-edition">Volume II · 2025</div>
-          <div class="magazine-cover-decor">★★★</div>
+          <!-- ✅ PDF ADDED HERE -->
+          <button class="btn-pdf" onclick="openPDF()">
+            Read Magazine <span>📄</span>
+          </button>
         </div>
       </div>
 
+<<<<<<< HEAD
       <div class="magazine-info">
         <h3>Issue #2 – Tech & Culture</h3>
         <p>
@@ -413,18 +472,19 @@
 
         <button class="btn-pdf" onclick="openPDF()">
           Read Magazine <span>📄</span>
+=======
+      <!-- Upload Section -->
+      <div class="magazine-upload">
+        <div class="upload-icon">📚</div>
+        <p>New magazine editions will be published here.</p>
+        <button class="btn-admin">
+          Upload Magazine (Admin)
+>>>>>>> b8ba84b84dce04df6a2a2e96985e29a2d9e7e8b5
         </button>
       </div>
-    </div>
 
-    <!-- Upload Section -->
-    <div class="magazine-upload">
-      <div class="upload-icon">📚</div>
-      <p>New magazine editions will be published here.</p>
-      <button class="btn-admin">
-        Upload Magazine (Admin)
-      </button>
     </div>
+<<<<<<< HEAD
 
   </div>
 </section>
@@ -466,666 +526,707 @@ function closePDF() {
 }
 </script>
 <!-- ============================================================
+=======
+  </section>
+  <!-- ============================================================
+>>>>>>> b8ba84b84dce04df6a2a2e96985e29a2d9e7e8b5
      REPORTS SECTION
      ============================================================ -->
-<section class="section" id="reports">
-  <div class="section-label">DOCUMENTATION</div>
-  <h2 class="section-title center-title">Event <span class="accent">Reports</span></h2>
-  <p class="section-subtitle">Detailed reports from our covered events. Available as PDF or image formats.</p>
-  <div class="reports-grid">
-    <div class="report-card">
-      <div class="report-icon">📋</div>
-      <h3>GOT 2024 Sports Report</h3>
-      <p>Comprehensive coverage of the annual sports fest including event highlights, winners, and photo gallery.</p>
-      <div class="report-meta"><span class="tag">PDF</span><span class="tag">Sports</span></div>
-      <button class="btn-view" onclick="openPDFModal('report','GOT 2024 Sports Report')">View Report</button>
+  <section class="section" id="reports">
+    <div class="section-label">DOCUMENTATION</div>
+    <h2 class="section-title center-title">Event <span class="accent">Reports</span></h2>
+    <p class="section-subtitle">Detailed reports from our covered events. Available as PDF or image formats.</p>
+    <div class="reports-grid">
+      <div class="report-card">
+        <div class="report-icon">📋</div>
+        <h3>GOT 2024 Sports Report</h3>
+        <p>Comprehensive coverage of the annual sports fest including event highlights, winners, and photo gallery.</p>
+        <div class="report-meta"><span class="tag">PDF</span><span class="tag">Sports</span></div>
+        <button onclick="window.open('GOT.pdf')">View Report</button>
+      </div>
+      <div class="report-card">
+        <div class="report-icon">💻</div>
+        <h3>TechTrix 2024 Report</h3>
+        <p>Full report on the technical fest – hackathon results, project expo winners, and cultural night recap.</p>
+        <div class="report-meta"><span class="tag">PDF</span><span class="tag">Tech</span></div>
+        <button onclick="window.open('techtrix.pdf')">View Report</button>
+      </div>
+      <div class="report-card">
+        <div class="report-icon">🎭</div>
+        <h3>Regalia 2024 Report</h3>
+        <p>Cultural fest coverage including dance performances, music events, drama showcases and celebrity night.</p>
+        <div class="report-meta"><span class="tag">PDF</span><span class="tag">Cultural</span></div>
+        <button onclick="window.open('regalia.pdf')">View Report</button>
+      </div>
+      <div class="report-upload-card">
+        <div class="upload-icon">📂</div>
+        <p>Upload new reports (PDF or image)</p>
+        <button class="btn-admin" onclick="openModal('adminUploadModal')">Upload Report (Admin)</button>
+      </div>
     </div>
-    <div class="report-card">
-      <div class="report-icon">💻</div>
-      <h3>TechTrix 2024 Report</h3>
-      <p>Full report on the technical fest – hackathon results, project expo winners, and cultural night recap.</p>
-      <div class="report-meta"><span class="tag">PDF</span><span class="tag">Tech</span></div>
-      <button class="btn-view" onclick="openPDFModal('report','TechTrix 2024 Report')">View Report</button>
-    </div>
-    <div class="report-card">
-      <div class="report-icon">🎭</div>
-      <h3>Regalia 2024 Report</h3>
-      <p>Cultural fest coverage including dance performances, music events, drama showcases and celebrity night.</p>
-      <div class="report-meta"><span class="tag">PDF</span><span class="tag">Cultural</span></div>
-      <button class="btn-view" onclick="openPDFModal('report','Regalia 2024 Report')">View Report</button>
-    </div>
-    <div class="report-upload-card">
-      <div class="upload-icon">📂</div>
-      <p>Upload new reports (PDF or image)</p>
-      <button class="btn-admin" onclick="openModal('adminUploadModal')">Upload Report (Admin)</button>
-    </div>
-  </div>
-</section>
+  </section>
 
-<!-- ============================================================
+  <!-- ============================================================
      EVENTS SECTION
      ============================================================ -->
-<section class="section dark-section" id="events">
-  <div class="section-label">EVENTS</div>
-  <h2 class="section-title center-title">Our <span class="accent">Events</span></h2>
-  <div class="events-tabs">
-    <button class="event-tab active" onclick="switchEventTab('internal')">🏫 Internal Events</button>
-    <button class="event-tab" onclick="switchEventTab('external')">🌐 External Events</button>
-  </div>
-
-  <!-- Internal Events -->
-  <div class="events-panel active" id="internal-panel">
-    <div class="internal-events-grid">
-
-      <!-- GOT -->
-      <div class="event-main-card" id="got">
-        <div class="event-badge">🏆 Sports</div>
-        <h3 class="event-name">GOT</h3>
-        <p class="event-subtitle">Game Of Trophies – Annual Sports Festival</p>
-        <p class="event-desc">The annual sports extravaganza of RCCIIT where students compete across multiple sporting disciplines. From cricket and football to athletics and indoor games, GOT is the ultimate celebration of sportsmanship.</p>
-        <div class="event-years">
-          <button class="year-btn active" onclick="switchYear('got',2023,this)">2023</button>
-          <button class="year-btn" onclick="switchYear('got',2024,this)">2024</button>
-          <button class="year-btn" onclick="switchYear('got',2025,this)">2025</button>
-        </div>
-        <div class="event-news-grid" id="got-news">
-          <div class="news-item">
-            <div class="news-img-placeholder">⚽</div>
-            <div class="news-text">
-              <h4>Football Finals</h4>
-              <p>CSE department wins the football championship in a thrilling final match.</p>
-            </div>
-          </div>
-          <div class="news-item">
-            <div class="news-img-placeholder">🏏</div>
-            <div class="news-text">
-              <h4>Cricket Trophy</h4>
-              <p>An epic cricket showdown that went down to the last over.</p>
-            </div>
-          </div>
-          <div class="news-item">
-            <div class="news-img-placeholder">🏃</div>
-            <div class="news-text">
-              <h4>Athletics Meet</h4>
-              <p>Students break records at the annual athletics track events.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- TechTrix -->
-      <div class="event-main-card" id="techtrix">
-        <div class="event-badge">💻 Tech</div>
-        <h3 class="event-name">TechTrix</h3>
-        <p class="event-subtitle">The Annual Tech Fest of RCCIIT</p>
-        <p class="event-desc">TechTrix is the flagship technical festival of RCCIIT, featuring hackathons, coding contests, robotics competitions, project expos, and guest lectures from industry experts.</p>
-        <div class="event-years">
-          <button class="year-btn active" onclick="switchYear('techtrix',2023,this)">2023</button>
-          <button class="year-btn" onclick="switchYear('techtrix',2024,this)">2024</button>
-          <button class="year-btn" onclick="switchYear('techtrix',2025,this)">2025</button>
-        </div>
-        <div class="event-news-grid" id="techtrix-news">
-          <div class="news-item">
-            <div class="news-img-placeholder">💡</div>
-            <div class="news-text">
-              <h4>24-Hour Hackathon</h4>
-              <p>180 participants, 30 teams, 1 winner – the most intense hackathon in college history.</p>
-            </div>
-          </div>
-          <div class="news-item">
-            <div class="news-img-placeholder">🤖</div>
-            <div class="news-text">
-              <h4>Robo-Wars</h4>
-              <p>Battle bots fight it out in the arena in an action-packed robotics competition.</p>
-            </div>
-          </div>
-          <div class="news-item">
-            <div class="news-img-placeholder">🎯</div>
-            <div class="news-text">
-              <h4>Project Expo</h4>
-              <p>Final year projects showcased to industry judges from leading tech companies.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Regalia -->
-      <div class="event-main-card" id="regalia">
-        <div class="event-badge">🎭 Cultural</div>
-        <h3 class="event-name">Regalia</h3>
-        <p class="event-subtitle">The Annual Cultural Festival of RCCIIT</p>
-        <p class="event-desc">Regalia is the grand cultural celebration of RCCIIT – a vibrant 3-day festival featuring live music, dance performances, drama, art exhibitions, and celebrity nights that bring the entire campus to life.</p>
-        <div class="event-years">
-          <button class="year-btn active" onclick="switchYear('regalia',2023,this)">2023</button>
-          <button class="year-btn" onclick="switchYear('regalia',2024,this)">2024</button>
-          <button class="year-btn" onclick="switchYear('regalia',2025,this)">2025</button>
-        </div>
-        <div class="event-news-grid" id="regalia-news">
-          <div class="news-item">
-            <div class="news-img-placeholder">💃</div>
-            <div class="news-text">
-              <h4>Dance Battle</h4>
-              <p>Electrifying dance performances from all departments light up the main stage.</p>
-            </div>
-          </div>
-          <div class="news-item">
-            <div class="news-img-placeholder">🎵</div>
-            <div class="news-text">
-              <h4>Music Night</h4>
-              <p>Live band performances and singing contests that echo through the campus.</p>
-            </div>
-          </div>
-          <div class="news-item">
-            <div class="news-img-placeholder">🎪</div>
-            <div class="news-text">
-              <h4>Drama & Skit</h4>
-              <p>Award-winning dramatic performances that leave the audience in awe.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
+  <section class="section dark-section" id="events">
+    <div class="section-label">EVENTS</div>
+    <h2 class="section-title center-title">Our <span class="accent">Events</span></h2>
+    <div class="events-tabs">
+      <button class="event-tab active" onclick="switchEventTab('internal')">🏫 Internal Events</button>
+      <button class="event-tab" onclick="switchEventTab('external')">🌐 External Events</button>
     </div>
-  </div>
 
-  <!-- External Events -->
-  <div class="events-panel" id="external-panel">
-    <div class="section-label" id="external-events" style="margin-bottom:2rem;">OTHER COLLEGE EVENTS WE PARTICIPATED IN</div>
-    <div class="external-events-grid">
-      <div class="ext-event-card">
-        <div class="ext-badge">🔴 GNIT</div>
-        <h3>GNIT Hackathon</h3>
-        <p>RCCIIT students participate in GNIT's annual hackathon, competing with teams from 50+ colleges across West Bengal.</p>
-        <div class="ext-event-meta"><span class="tag">Hackathon</span><span class="tag">2024</span></div>
-      </div>
-      <div class="ext-event-card">
-        <div class="ext-badge">🇮🇳 SIH</div>
-        <h3>Smart India Hackathon</h3>
-        <p>Our teams participated in SIH, India's largest open innovation model, solving real-world government problems.</p>
-        <div class="ext-event-meta"><span class="tag">National</span><span class="tag">2024</span></div>
-      </div>
-      <div class="ext-event-card">
-        <div class="ext-badge">🏛️ JDEX</div>
-        <h3>JDEX Tech Expo</h3>
-        <p>Students showcase emerging technology projects at the annual Jadavpur District Student Tech Expo.</p>
-        <div class="ext-event-meta"><span class="tag">Exhibition</span><span class="tag">2024</span></div>
-      </div>
-      <div class="ext-event-card">
-        <div class="ext-badge">🌟 INTER</div>
-        <h3>Inter-College Debate</h3>
-        <p>RCCIIT representatives compete in the West Bengal Inter-College Debate Championship held at Presidency University.</p>
-        <div class="ext-event-meta"><span class="tag">Debate</span><span class="tag">2023</span></div>
-      </div>
-      <div class="ext-event-card">
-        <div class="ext-badge">🎨 ART</div>
-        <h3>MAKAUT Fest</h3>
-        <p>Participation in the university-wide cultural and technical festival organized by MAKAUT across affiliated colleges.</p>
-        <div class="ext-event-meta"><span class="tag">Cultural</span><span class="tag">2024</span></div>
-      </div>
-      <div class="ext-event-card">
-        <div class="ext-badge">➕ ADD</div>
-        <h3>More Coming Soon</h3>
-        <p>More external events will be added as we participate in competitions and fests across the state and country.</p>
-        <div class="ext-event-meta"><span class="tag">Upcoming</span></div>
+    <!-- Internal Events -->
+    <div class="events-panel active" id="internal-panel">
+      <div class="internal-events-grid">
+
+        <!-- GOT -->
+        <div class="event-main-card" id="got">
+          <div class="event-badge">🏆 Sports</div>
+          <h3 class="event-name">GOT</h3>
+          <p class="event-subtitle">Game Of Trophies – Annual Sports Festival</p>
+          <p class="event-desc">The annual sports extravaganza of RCCIIT where students compete across multiple sporting
+            disciplines. From cricket and football to athletics and indoor games, GOT is the ultimate celebration of
+            sportsmanship.</p>
+          <div class="event-years">
+            <button class="year-btn active" onclick="switchYear('got',2023,this)">2023</button>
+            <button class="year-btn" onclick="switchYear('got',2024,this)">2024</button>
+            <button class="year-btn" onclick="switchYear('got',2025,this)">2025</button>
+          </div>
+          <div class="event-news-grid" id="got-news">
+            <div class="news-item">
+              <div class="news-img-placeholder">⚽</div>
+              <div class="news-text">
+                <h4>Football Finals</h4>
+                <p>CSE department wins the football championship in a thrilling final match.</p>
+              </div>
+            </div>
+            <div class="news-item">
+              <div class="news-img-placeholder">🏏</div>
+              <div class="news-text">
+                <h4>Cricket Trophy</h4>
+                <p>An epic cricket showdown that went down to the last over.</p>
+              </div>
+            </div>
+            <div class="news-item">
+              <div class="news-img-placeholder">🏃</div>
+              <div class="news-text">
+                <h4>Athletics Meet</h4>
+                <p>Students break records at the annual athletics track events.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TechTrix -->
+        <div class="event-main-card" id="techtrix">
+          <div class="event-badge">💻 Tech</div>
+          <h3 class="event-name">TechTrix</h3>
+          <p class="event-subtitle">The Annual Tech Fest of RCCIIT</p>
+          <p class="event-desc">TechTrix is the flagship technical festival of RCCIIT, featuring hackathons, coding
+            contests, robotics competitions, project expos, and guest lectures from industry experts.</p>
+          <div class="event-years">
+            <button class="year-btn active" onclick="switchYear('techtrix',2023,this)">2023</button>
+            <button class="year-btn" onclick="switchYear('techtrix',2024,this)">2024</button>
+            <button class="year-btn" onclick="switchYear('techtrix',2025,this)">2025</button>
+          </div>
+          <div class="event-news-grid" id="techtrix-news">
+            <div class="news-item">
+              <div class="news-img-placeholder">💡</div>
+              <div class="news-text">
+                <h4>24-Hour Hackathon</h4>
+                <p>180 participants, 30 teams, 1 winner – the most intense hackathon in college history.</p>
+              </div>
+            </div>
+            <div class="news-item">
+              <div class="news-img-placeholder">🤖</div>
+              <div class="news-text">
+                <h4>Robo-Wars</h4>
+                <p>Battle bots fight it out in the arena in an action-packed robotics competition.</p>
+              </div>
+            </div>
+            <div class="news-item">
+              <div class="news-img-placeholder">🎯</div>
+              <div class="news-text">
+                <h4>Project Expo</h4>
+                <p>Final year projects showcased to industry judges from leading tech companies.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Regalia -->
+        <div class="event-main-card" id="regalia">
+          <div class="event-badge">🎭 Cultural</div>
+          <h3 class="event-name">Regalia</h3>
+          <p class="event-subtitle">The Annual Cultural Festival of RCCIIT</p>
+          <p class="event-desc">Regalia is the grand cultural celebration of RCCIIT – a vibrant 3-day festival featuring
+            live music, dance performances, drama, art exhibitions, and celebrity nights that bring the entire campus to
+            life.</p>
+          <div class="event-years">
+            <button class="year-btn active" onclick="switchYear('regalia',2023,this)">2023</button>
+            <button class="year-btn" onclick="switchYear('regalia',2024,this)">2024</button>
+            <button class="year-btn" onclick="switchYear('regalia',2025,this)">2025</button>
+          </div>
+          <div class="event-news-grid" id="regalia-news">
+            <div class="news-item">
+              <div class="news-img-placeholder">💃</div>
+              <div class="news-text">
+                <h4>Dance Battle</h4>
+                <p>Electrifying dance performances from all departments light up the main stage.</p>
+              </div>
+            </div>
+            <div class="news-item">
+              <div class="news-img-placeholder">🎵</div>
+              <div class="news-text">
+                <h4>Music Night</h4>
+                <p>Live band performances and singing contests that echo through the campus.</p>
+              </div>
+            </div>
+            <div class="news-item">
+              <div class="news-img-placeholder">🎪</div>
+              <div class="news-text">
+                <h4>Drama & Skit</h4>
+                <p>Award-winning dramatic performances that leave the audience in awe.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
-  </div>
-</section>
 
-<!-- ============================================================
+    <!-- External Events -->
+    <div class="events-panel" id="external-panel">
+      <div class="section-label" id="external-events" style="margin-bottom:2rem;">OTHER COLLEGE EVENTS WE PARTICIPATED
+        IN</div>
+      <div class="external-events-grid">
+        <div class="ext-event-card">
+          <div class="ext-badge">🔴 GNIT</div>
+          <h3>GNIT Hackathon</h3>
+          <p>RCCIIT students participate in GNIT's annual hackathon, competing with teams from 50+ colleges across West
+            Bengal.</p>
+          <div class="ext-event-meta"><span class="tag">Hackathon</span><span class="tag">2024</span></div>
+        </div>
+        <div class="ext-event-card">
+          <div class="ext-badge">🇮🇳 SIH</div>
+          <h3>Smart India Hackathon</h3>
+          <p>Our teams participated in SIH, India's largest open innovation model, solving real-world government
+            problems.</p>
+          <div class="ext-event-meta"><span class="tag">National</span><span class="tag">2024</span></div>
+        </div>
+        <div class="ext-event-card">
+          <div class="ext-badge">🏛️ JDEX</div>
+          <h3>JDEX Tech Expo</h3>
+          <p>Students showcase emerging technology projects at the annual Jadavpur District Student Tech Expo.</p>
+          <div class="ext-event-meta"><span class="tag">Exhibition</span><span class="tag">2024</span></div>
+        </div>
+        <div class="ext-event-card">
+          <div class="ext-badge">🌟 INTER</div>
+          <h3>Inter-College Debate</h3>
+          <p>RCCIIT representatives compete in the West Bengal Inter-College Debate Championship held at Presidency
+            University.</p>
+          <div class="ext-event-meta"><span class="tag">Debate</span><span class="tag">2023</span></div>
+        </div>
+        <div class="ext-event-card">
+          <div class="ext-badge">🎨 ART</div>
+          <h3>MAKAUT Fest</h3>
+          <p>Participation in the university-wide cultural and technical festival organized by MAKAUT across affiliated
+            colleges.</p>
+          <div class="ext-event-meta"><span class="tag">Cultural</span><span class="tag">2024</span></div>
+        </div>
+        <div class="ext-event-card">
+          <div class="ext-badge">➕ ADD</div>
+          <h3>More Coming Soon</h3>
+          <p>More external events will be added as we participate in competitions and fests across the state and
+            country.</p>
+          <div class="ext-event-meta"><span class="tag">Upcoming</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
      MEMBERS SECTION
      ============================================================ -->
-<section class="section" id="members">
-  <div class="section-label">OUR TEAM</div>
-  <h2 class="section-title center-title">Meet the <span class="accent">Team</span></h2>
+  <section class="section" id="members">
+    <div class="section-label">OUR TEAM</div>
+    <h2 class="section-title center-title">Meet the <span class="accent">Team</span></h2>
 
-  <div class="members-tabs">
-    <button class="member-tab active" onclick="switchMemberTab('core')">Core Members</button>
-    <button class="member-tab" onclick="switchMemberTab('subcore')">Sub-Core</button>
-    <button class="member-tab" onclick="switchMemberTab('faculty')">Faculty</button>
-  </div>
+    <div class="members-tabs">
+      <button class="member-tab active" onclick="switchMemberTab('core')">Core Members</button>
+      <button class="member-tab" onclick="switchMemberTab('subcore')">Sub-Core</button>
+      <button class="member-tab" onclick="switchMemberTab('faculty')">Faculty</button>
+    </div>
 
-  <!-- Core Members -->
-  <div class="members-panel active" id="core-panel">
-    <div id="core" class="core-members-grid">
-      <!-- 1st: President -->
-      <div class="member-float-card">
-        <div class="member-avatar">
-          <img src="assets/images/president.jpg" alt="Samprit Rup" />
+    <!-- Core Members -->
+    <div class="members-panel active" id="core-panel">
+      <div id="core" class="core-members-grid">
+        <!-- 1st: President -->
+        <div class="member-float-card">
+          <div class="member-avatar">
+            <img src="assets/images/president.jpg" alt="Samprit Rup" />
+          </div>
+          <div class="member-info">
+            <h3 class="member-name">Samprit Rup</h3>
+            <p class="member-pos">President</p>
+          </div>
         </div>
-        <div class="member-info">
-          <h3 class="member-name">Samprit Rup</h3>
-          <p class="member-pos">President</p>
+        <!-- 2nd: Secretary -->
+        <div class="member-float-card">
+          <div class="member-avatar">
+            <img src="assets/images/secretary.jpg" alt="Raunshan Pandey" />
+          </div>
+          <div class="member-info">
+            <h3 class="member-name">Raunshan Pandey</h3>
+            <p class="member-pos">Secretary</p>
+          </div>
         </div>
-      </div>
-      <!-- 2nd: Secretary -->
-      <div class="member-float-card">
-        <div class="member-avatar">
-          <img src="assets/images/secretary.jpg" alt="Raunshan Pandey" />
+        <!-- 3rd: Student Advisor -->
+        <div class="member-float-card">
+          <div class="member-avatar">
+            <img src="assets/images/student advisor.jpg" alt="Shreya Dutta" />
+          </div>
+          <div class="member-info">
+            <h3 class="member-name">Shreya Dutta</h3>
+            <p class="member-pos">Student Advisor</p>
+          </div>
         </div>
-        <div class="member-info">
-          <h3 class="member-name">Raunshan Pandey</h3>
-          <p class="member-pos">Secretary</p>
+        <!-- 4th: Tech Lead -->
+        <div class="member-float-card">
+          <div class="member-avatar">
+            <img src="assets/images/tech lead.jpg" alt="Pritam Mondal" />
+          </div>
+          <div class="member-info">
+            <h3 class="member-name">Pritam Mondal</h3>
+            <p class="member-pos">Tech Lead</p>
+          </div>
         </div>
-      </div>
-      <!-- 3rd: Student Advisor -->
-      <div class="member-float-card">
-        <div class="member-avatar">
-          <img src="assets/images/student advisor.jpg" alt="Shreya Dutta" />
+        <!-- 5th: Editor-in-Chief -->
+        <div class="member-float-card">
+          <div class="member-avatar">
+            <img src="assets/images/editor in chief.jpg" alt="Sutanuka Chakraborty" />
+          </div>
+          <div class="member-info">
+            <h3 class="member-name">Sutanuka Chakraborty</h3>
+            <p class="member-pos">Editor-in-Chief</p>
+          </div>
         </div>
-        <div class="member-info">
-          <h3 class="member-name">Shreya Dutta</h3>
-          <p class="member-pos">Student Advisor</p>
+        <!-- 6th: PR Head -->
+        <div class="member-float-card">
+          <div class="member-avatar">
+            <img src="assets/images/pr head.jpg" alt="Kankona Chakraborty" />
+          </div>
+          <div class="member-info">
+            <h3 class="member-name">Kankona Chakraborty</h3>
+            <p class="member-pos">PR Head</p>
+          </div>
         </div>
-      </div>
-      <!-- 4th: Tech Lead -->
-      <div class="member-float-card">
-        <div class="member-avatar">
-           <img src="assets/images/tech lead.jpg" alt="Pritam Mondal" />
+        <!-- 7th: Alumini POC -->
+        <div class="member-float-card">
+          <div class="member-avatar">
+            <img src="assets/images/alumni poc.jpg" alt="Soumyadeep Sardar" />
+          </div>
+          <div class="member-info">
+            <h3 class="member-name">Soumyadeep Sardar</h3>
+            <p class="member-pos">Alumni POC</p>
+          </div>
         </div>
-        <div class="member-info">
-          <h3 class="member-name">Pritam Mondal</h3>
-          <p class="member-pos">Tech Lead</p>
-        </div>
-      </div>
-      <!-- 5th: Editor-in-Chief -->
-      <div class="member-float-card">
-        <div class="member-avatar">
-          <img src="assets/images/editor in chief.jpg" alt="Sutanuka Chakraborty" />
-        </div>
-        <div class="member-info">
-          <h3 class="member-name">Sutanuka Chakraborty</h3>
-          <p class="member-pos">Editor-in-Chief</p>
-        </div>
-      </div>
-      <!-- 6th: PR Head -->
-      <div class="member-float-card">
-        <div class="member-avatar">
-          <img src="assets/images/pr head.jpg" alt="Kankona Chakraborty" />
-        </div>
-        <div class="member-info">
-          <h3 class="member-name">Kankona Chakraborty</h3>
-          <p class="member-pos">PR Head</p>
-        </div>
-      </div>
-      <!-- 7th: Alumini POC -->
-      <div class="member-float-card">
-        <div class="member-avatar">
-          <img src="assets/images/alumni poc.jpg" alt="Soumyadeep Sardar" />
-        </div>
-        <div class="member-info">
-          <h3 class="member-name">Soumyadeep Sardar</h3>
-          <p class="member-pos">Alumni POC</p>
-        </div>
-      </div>
-       <!-- 8th: Media Journalist Lead -->
+        <!-- 8th: Media Journalist Lead -->
         <div class="member-float-card">
           <div class="member-avatar">
             <img src="assets/images/media journalist lead.jpg" alt="Meghna Santra" />
-            </div>
-        <div class="member-info">
-          <h3 class="member-name">Meghna Santra</h3>
-          <p class="member-pos">Media Journalist Lead</p>
+          </div>
+          <div class="member-info">
+            <h3 class="member-name">Meghna Santra</h3>
+            <p class="member-pos">Media Journalist Lead</p>
+          </div>
+
         </div>
-            
-    </div>
-     <!-- 9th: Art Work Lead -->
-      <div class="member-float-card">
-        <div class="member-avatar">
-          <img src="assets/images/art work lead.jpg" alt="Soham Dey" />
+        <!-- 9th: Art Work Lead -->
+        <div class="member-float-card">
+          <div class="member-avatar">
+            <img src="assets/images/art work lead.jpg" alt="Soham Dey" />
+          </div>
+          <div class="member-info">
+            <h3 class="member-name">Soham Dey</h3>
+            <p class="member-pos">Art Work Lead</p>
+          </div>
         </div>
-        <div class="member-info">
-          <h3 class="member-name">Soham Dey</h3>
-          <p class="member-pos">Art Work Lead</p>
+        <!-- 10th: Content Lead -->
+        <div class="member-float-card">
+          <div class="member-avatar">
+            <img src="assets/images/content lead.jpg" alt="Aritree Saha" />
+          </div>
+          <div class="member-info">
+            <h3 class="member-name">Aritree Saha</h3>
+            <p class="member-pos">Content Lead</p>
+          </div>
         </div>
-      </div>
-      <!-- 10th: Content Lead -->
-      <div class="member-float-card">
-        <div class="member-avatar">
-          <img src="assets/images/content lead.jpg" alt="Aritree Saha" />
-        </div>
-        <div class="member-info">
-          <h3 class="member-name">Aritree Saha</h3>
-          <p class="member-pos">Content Lead</p>
-        </div>
-      </div>
         <!-- 11th: Socia Media Lead-->
-         <div class="member-float-card">
-        <div class="member-avatar">
-          <img src="assets/images/Social media lead.jpg" alt="Antara Malik" />
+        <div class="member-float-card">
+          <div class="member-avatar">
+            <img src="assets/images/Social media lead.jpg" alt="Antara Malik" />
+          </div>
+          <div class="member-info">
+            <h3 class="member-name">Antara Malik</h3>
+            <p class="member-pos">Social Media Lead</p>
+          </div>
         </div>
-        <div class="member-info">
-          <h3 class="member-name">Antara Malik</h3>
-          <p class="member-pos">Social Media Lead</p>
-        </div>
-      </div>
-         <!-- 12th: Graphics Lead -->
-         <div class="member-float-card">
-        <div class="member-avatar">
-          <img src="assets/images/Graphics.jpg" alt="Sohom Sarkar" />
-        </div>
-        <div class="member-info">
-          <h3 class="member-name">Sohom Sarkar</h3>
-          <p class="member-pos">Graphics Lead</p>
-        </div>
+        <!-- 12th: Graphics Lead -->
+        <div class="member-float-card">
+          <div class="member-avatar">
+            <img src="assets/images/Graphics.jpg" alt="Sohom Sarkar" />
+          </div>
+          <div class="member-info">
+            <h3 class="member-name">Sohom Sarkar</h3>
+            <p class="member-pos">Graphics Lead</p>
+          </div>
         </div>
         <!-- 13th: Lead Journalist -->
-         <div class="member-float-card">
-        <div class="member-avatar">
-          <img src="assets/images/Lead journalist.jpg" alt="Kaushiki Baidya" />
-        </div>
-        <div class="member-info">
-          <h3 class="member-name">Kaushiki Baidya</h3>
-          <p class="member-pos">Lead Journalist</p>
-        </div>
+        <div class="member-float-card">
+          <div class="member-avatar">
+            <img src="assets/images/Lead journalist.jpg" alt="Kaushiki Baidya" />
+          </div>
+          <div class="member-info">
+            <h3 class="member-name">Kaushiki Baidya</h3>
+            <p class="member-pos">Lead Journalist</p>
+          </div>
         </div>
         <!-- 14th: Event Management Lead -->
-         <div class="member-float-card">
-        <div class="member-avatar">
-          <img src="assets/images/Event management lead.jpg" alt="Aditya Chakraborty" />
-        </div>
-        <div class="member-info">
-          <h3 class="member-name">Aditya Chakraborty</h3>
-          <p class="member-pos">Event Management Lead</p>
-        </div>
+        <div class="member-float-card">
+          <div class="member-avatar">
+            <img src="assets/images/Event management lead.jpg" alt="Aditya Chakraborty" />
+          </div>
+          <div class="member-info">
+            <h3 class="member-name">Aditya Chakraborty</h3>
+            <p class="member-pos">Event Management Lead</p>
+          </div>
         </div>
         <!-- 15th: Research Wing Associate-->
-         <div class="member-float-card">
-        <div class="member-avatar">
-          <img src="assets/images/Research wing associate.jpg" alt="Debarghya Aich" />
+        <div class="member-float-card">
+          <div class="member-avatar">
+            <img src="assets/images/Research wing associate.jpg" alt="Debarghya Aich" />
+          </div>
+          <div class="member-info">
+            <h3 class="member-name">Debarghya Aich</h3>
+            <p class="member-pos">Research Wing Associate</p>
+          </div>
         </div>
-        <div class="member-info">
-          <h3 class="member-name">Debarghya Aich</h3>
-          <p class="member-pos">Research Wing Associate</p>
+
+
+
+
+
+
+
+      </div>
+
+      <!-- Sub-Core Members -->
+      <div class="members-panel" id="subcore-panel">
+        <div id="subcore" class="subcore-domains">
+          <div class="domain-card" onclick="openDomainModal('Tech Team')">
+            <div class="domain-icon">💻</div>
+            <h3>Tech Team</h3>
+            <p>Web, app development & digital infrastructure</p>
+            <span class="domain-count">6 members</span>
+          </div>
+          <div class="domain-card" onclick="openDomainModal('Graphics Team')">
+            <div class="domain-icon">🎨</div>
+            <h3>Graphics Team</h3>
+            <p>Poster designing, branding & visual media</p>
+            <span class="domain-count">5 members</span>
+          </div>
+          <div class="domain-card" onclick="openDomainModal('Content Team')">
+            <div class="domain-icon">✍️</div>
+            <h3>Content Team</h3>
+            <p>Article writing, reporting & social media content</p>
+            <span class="domain-count">7 members</span>
+          </div>
+          <div class="domain-card" onclick="openDomainModal('Photography Team')">
+            <div class="domain-icon">📷</div>
+            <h3>Photography Team</h3>
+            <p>Event photography, videography & editing</p>
+            <span class="domain-count">4 members</span>
+          </div>
+          <div class="domain-card" onclick="openDomainModal('Social Media Team')">
+            <div class="domain-icon">📱</div>
+            <h3>Social Media Team</h3>
+            <p>Instagram, Facebook, YouTube management</p>
+            <span class="domain-count">5 members</span>
+          </div>
+          <div class="domain-card" onclick="openDomainModal('PR Team')">
+            <div class="domain-icon">🤝</div>
+            <h3>PR & Outreach Team</h3>
+            <p>Public relations, sponsorships & collaboration</p>
+            <span class="domain-count">4 members</span>
+          </div>
         </div>
+      </div>
+
+      <!-- Faculty Advisors -->
+      <div class="members-panel active" id="faculty-panel">
+        <div id="faculty" class="faculty-domain">
+          <!-- 1st: Faculty Advisor -->
+          <div class="member-float-card">
+            <div class="member-avatar">
+              <img src="assets/faculty images/ANWESHA BASU.jpeg" alt="ANWESHA BASU" />
+            </div>
+            <div class="member-info">
+              <h3 class="member-name">ANWESHA BASU</h3>
+              <p class="member-pos">Faculty Advisor</p>
+            </div>
+          </div>
+          <!-- 2nd: Faculty Advisor -->
+          <div class="member-float-card">
+            <div class="member-avatar">
+              <img src="assets/faculty images/Dr. Anirban Mukherjee.jpeg" alt="Dr. Anirban Mukherjee" />
+            </div>
+            <div class="member-info">
+              <h3 class="member-name">Dr. Anirban Mukherjee</h3>
+              <p class="member-pos">Faculty Advisor</p>
+            </div>
+          </div>
+          <!-- 3rd: Faculty Advisor -->
+          <div class="member-float-card">
+            <div class="member-avatar">
+              <img src="assets/faculty images/SOHINI SEN.jpeg" alt="SOHINI SEN" />
+            </div>
+            <div class="member-info">
+              <h3 class="member-name">SOHINI SEN</h3>
+              <p class="member-pos">Faculty Advisor</p>
+            </div>
+          </div>
+          <!-- 4th: Faculty Advisor -->
+          <div class="member-float-card">
+            <div class="member-avatar">
+              <img src="assets/faculty images/TASMINA YASMIN.jpeg" alt="TASMINA YASMIN" />
+            </div>
+            <div class="member-info">
+              <h3 class="member-name">TASMINA YASMIN</h3>
+              <p class="member-pos">Faculty Advisor</p>
+            </div>
+          </div>
         </div>
-
-
-
-
-
-
-
-  </div>
-
-  <!-- Sub-Core Members -->
-  <div class="members-panel" id="subcore-panel">
-    <div id="subcore" class="subcore-domains">
-      <div class="domain-card" onclick="openDomainModal('Tech Team')">
-        <div class="domain-icon">💻</div>
-        <h3>Tech Team</h3>
-        <p>Web, app development & digital infrastructure</p>
-        <span class="domain-count">6 members</span>
       </div>
-      <div class="domain-card" onclick="openDomainModal('Graphics Team')">
-        <div class="domain-icon">🎨</div>
-        <h3>Graphics Team</h3>
-        <p>Poster designing, branding & visual media</p>
-        <span class="domain-count">5 members</span>
-      </div>
-      <div class="domain-card" onclick="openDomainModal('Content Team')">
-        <div class="domain-icon">✍️</div>
-        <h3>Content Team</h3>
-        <p>Article writing, reporting & social media content</p>
-        <span class="domain-count">7 members</span>
-      </div>
-      <div class="domain-card" onclick="openDomainModal('Photography Team')">
-        <div class="domain-icon">📷</div>
-        <h3>Photography Team</h3>
-        <p>Event photography, videography & editing</p>
-        <span class="domain-count">4 members</span>
-      </div>
-      <div class="domain-card" onclick="openDomainModal('Social Media Team')">
-        <div class="domain-icon">📱</div>
-        <h3>Social Media Team</h3>
-        <p>Instagram, Facebook, YouTube management</p>
-        <span class="domain-count">5 members</span>
-      </div>
-      <div class="domain-card" onclick="openDomainModal('PR Team')">
-        <div class="domain-icon">🤝</div>
-        <h3>PR & Outreach Team</h3>
-        <p>Public relations, sponsorships & collaboration</p>
-        <span class="domain-count">4 members</span>
-      </div>
-    </div>
-  </div>
+  </section>
 
-  <!-- Faculty Advisors -->
-  <div class="members-panel" id="faculty-panel">
-    <div id="faculty" class="faculty-grid">
-      <div class="faculty-card">
-        <div class="faculty-avatar">👨‍🏫</div>
-        <h3>Prof. Aritra Sen</h3>
-        <p class="faculty-dept">Dept. of Computer Science</p>
-        <p class="faculty-role">Faculty Advisor</p>
-      </div>
-      <div class="faculty-card">
-        <div class="faculty-avatar">👩‍🏫</div>
-        <h3>Dr. Suchandra Ghosh</h3>
-        <p class="faculty-dept">Dept. of Electronics</p>
-        <p class="faculty-role">Co-Advisor</p>
-      </div>
-      <div class="faculty-card">
-        <div class="faculty-avatar">👨‍🏫</div>
-        <h3>Prof. Biplab Roy</h3>
-        <p class="faculty-dept">Dept. of Humanities</p>
-        <p class="faculty-role">Media Advisor</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
+  <!-- ============================================================
      CONTACT SECTION
      ============================================================ -->
-<section class="section dark-section" id="contact">
-  <div class="section-label">GET IN TOUCH</div>
-  <h2 class="section-title center-title">Contact <span class="accent">Us</span></h2>
-  <div class="contact-grid">
-    <div class="contact-info">
-      <div class="contact-item">
-        <div class="contact-icon">📧</div>
-        <div>
-          <h4>Email</h4>
-          <a href="mailto:rcctalkies@rcciit.org" class="contact-link">rcctalkies@rcciit.org</a>
+  <section class="section dark-section" id="contact">
+    <div class="section-label">GET IN TOUCH</div>
+    <h2 class="section-title center-title">Contact <span class="accent">Us</span></h2>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <div class="contact-item">
+          <div class="contact-icon">📧</div>
+          <div>
+            <h4>Email</h4>
+            <a href="mailto:rcctalkies@rcciit.org" class="contact-link">rcctalkies@rcciit.org</a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📞</div>
+          <div>
+            <h4>Phone</h4>
+            <a href="tel:+919876543210" class="contact-link">+91 98765 43210</a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div>
+            <h4>Address</h4>
+            <p>RCC Institute of Information Technology,<br />Canal South Road, Beliaghata,<br />Kolkata – 700015, West
+              Bengal</p>
+          </div>
+        </div>
+        <div class="social-links">
+          <a href="#" class="social-btn instagram">📸 Instagram</a>
+          <a href="#" class="social-btn facebook">📘 Facebook</a>
+          <a href="#" class="social-btn youtube">▶️ YouTube</a>
         </div>
       </div>
-      <div class="contact-item">
-        <div class="contact-icon">📞</div>
-        <div>
-          <h4>Phone</h4>
-          <a href="tel:+919876543210" class="contact-link">+91 98765 43210</a>
+      <form class="contact-form" id="contactForm" onsubmit="handleFormSubmit(event)">
+        <h3>Send us a Message</h3>
+        <div class="form-group">
+          <label for="msgName">Full Name</label>
+          <input type="text" id="msgName" placeholder="Your full name" required />
         </div>
-      </div>
-      <div class="contact-item">
-        <div class="contact-icon">📍</div>
-        <div>
-          <h4>Address</h4>
-          <p>RCC Institute of Information Technology,<br/>Canal South Road, Beliaghata,<br/>Kolkata – 700015, West Bengal</p>
+        <div class="form-group">
+          <label for="msgEmail">Email Address</label>
+          <input type="email" id="msgEmail" placeholder="your@email.com" required />
         </div>
-      </div>
-      <div class="social-links">
-        <a href="#" class="social-btn instagram">📸 Instagram</a>
-        <a href="#" class="social-btn facebook">📘 Facebook</a>
-        <a href="#" class="social-btn youtube">▶️ YouTube</a>
-      </div>
+        <div class="form-group">
+          <label for="msgPhone">Phone Number</label>
+          <input type="tel" id="msgPhone" placeholder="+91 XXXXX XXXXX" />
+        </div>
+        <div class="form-group">
+          <label for="msgText">Message</label>
+          <textarea id="msgText" rows="5" placeholder="Write your message here..." required></textarea>
+        </div>
+        <button type="submit" class="btn-submit">Send Message 🚀</button>
+      </form>
     </div>
-    <form class="contact-form" id="contactForm" onsubmit="handleFormSubmit(event)">
-      <h3>Send us a Message</h3>
-      <div class="form-group">
-        <label for="msgName">Full Name</label>
-        <input type="text" id="msgName" placeholder="Your full name" required />
-      </div>
-      <div class="form-group">
-        <label for="msgEmail">Email Address</label>
-        <input type="email" id="msgEmail" placeholder="your@email.com" required />
-      </div>
-      <div class="form-group">
-        <label for="msgPhone">Phone Number</label>
-        <input type="tel" id="msgPhone" placeholder="+91 XXXXX XXXXX" />
-      </div>
-      <div class="form-group">
-        <label for="msgText">Message</label>
-        <textarea id="msgText" rows="5" placeholder="Write your message here..." required></textarea>
-      </div>
-      <button type="submit" class="btn-submit">Send Message 🚀</button>
-    </form>
-  </div>
-</section>
+  </section>
 
-<!-- ============================================================
+  <!-- ============================================================
      FOOTER
      ============================================================ -->
-<footer class="footer">
-  <div class="footer-content">
-    <div class="footer-brand">
-      <img src="assets/images/rcc-logo.png" alt="RCC Talkies" class="footer-logo" />
-      <span>RCC Talkies</span>
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <img src="assets/images/rcc-logo.png" alt="RCC Talkies" class="footer-logo" />
+        <span>RCC Talkies</span>
+      </div>
+      <p class="footer-tagline">The Voice of RCCIIT — Journalism at its finest</p>
+      <p class="footer-copy">© 2025 RCC Talkies. All rights reserved. | RCCIIT, Kolkata</p>
     </div>
-    <p class="footer-tagline">The Voice of RCCIIT — Journalism at its finest</p>
-    <p class="footer-copy">© 2025 RCC Talkies. All rights reserved. | RCCIIT, Kolkata</p>
-  </div>
-</footer>
+  </footer>
 
-<!-- ============================================================
+  <!-- ============================================================
      MODALS
      ============================================================ -->
 
-<!-- Login Modal -->
-<div class="modal-overlay" id="loginModal">
-  <div class="modal-box">
-    <button class="modal-close" onclick="closeModal('loginModal')">✕</button>
-    <div class="modal-header">
-      <img src="assets/images/rcc-logo.png" alt="RCC Talkies" class="modal-logo" />
-      <h2>Welcome Back</h2>
-      <p>Sign in to your RCC Talkies account</p>
-    </div>
-   
-    <div class="modal-divider">or</div>
-    <form onsubmit="handleLogin(event)">
-      <div class="form-group">
-        <label>Email</label>
-        <input type="email" placeholder="your@email.com" required />
+  <!-- Login Modal -->
+  <div class="modal-overlay" id="loginModal">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeModal('loginModal')">✕</button>
+      <div class="modal-header">
+        <img src="assets/images/rcc-logo.png" alt="RCC Talkies" class="modal-logo" />
+        <h2>Welcome Back</h2>
+        <p>Sign in to your RCC Talkies account</p>
       </div>
-      <div class="form-group">
-        <label>Password</label>
-        <input type="password" placeholder="••••••••" required />
-      </div>
-      <button type="submit" class="btn-modal-submit">Login</button>
-    </form>
-    <p class="modal-switch">Don't have an account? <a href="#" onclick="switchModal('loginModal','signupModal')">Sign Up</a></p>
-  </div>
-</div>
 
-<!-- Signup Modal -->
-<div class="modal-overlay" id="signupModal">
-  <div class="modal-box">
-    <button class="modal-close" onclick="closeModal('signupModal')">✕</button>
-    <div class="modal-header">
-      <img src="assets/images/rcc-logo.png" alt="RCC Talkies" class="modal-logo" />
-      <h2>Join RCC Talkies</h2>
-      <p>Create your account to stay updated</p>
-    </div>
-    
-   
-    <form onsubmit="handleSignup(event)">
-      <div class="form-group">
-        <label>Full Name</label>
-        <input type="text" placeholder="Your full name" required />
-      </div>
-      <div class="form-group">
-        <label>Email</label>
-        <input type="email" placeholder="your@email.com" required />
-      </div>
-      <div class="form-group">
-        <label>Password</label>
-        <input type="password" placeholder="••••••••" required />
-      </div>
-      <button type="submit" class="btn-modal-submit">Create Account</button>
-    </form>
-    <p class="modal-switch">Already have an account? <a href="#" onclick="switchModal('signupModal','loginModal')">Login</a></p>
-  </div>
-</div>
-
-<!-- PDF Viewer Modal -->
-<div class="modal-overlay" id="pdfModal">
-  <div class="modal-box pdf-modal">
-    <button class="modal-close" onclick="closeModal('pdfModal')">✕</button>
-    <h2 id="pdfModalTitle">Document Viewer</h2>
-    <div class="pdf-placeholder">
-      <div class="pdf-icon">📄</div>
-      <p id="pdfDocName">Document name</p>
-      <p class="pdf-note">PDF/file will display here once uploaded by admin.</p>
+      <div class="modal-divider">or</div>
+      <form onsubmit="handleLogin(event)">
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" placeholder="your@email.com" required />
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" placeholder="••••••••" required />
+        </div>
+        <button type="submit" class="btn-modal-submit">Login</button>
+      </form>
+      <p class="modal-switch">Don't have an account? <a href="#" onclick="switchModal('loginModal','signupModal')">Sign
+          Up</a></p>
     </div>
   </div>
-</div>
 
-<!-- Domain Members Modal -->
-<div class="modal-overlay" id="domainModal">
-  <div class="modal-box domain-modal">
-    <button class="modal-close" onclick="closeModal('domainModal')">✕</button>
-    <h2 id="domainModalTitle">Team Members</h2>
-    <div class="domain-members-grid" id="domainMembersGrid">
-      <!-- Members injected by JS -->
+  <!-- Signup Modal -->
+  <div class="modal-overlay" id="signupModal">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeModal('signupModal')">✕</button>
+      <div class="modal-header">
+        <img src="assets/images/rcc-logo.png" alt="RCC Talkies" class="modal-logo" />
+        <h2>Join RCC Talkies</h2>
+        <p>Create your account to stay updated</p>
+      </div>
+
+
+      <form onsubmit="handleSignup(event)">
+        <div class="form-group">
+          <label>Full Name</label>
+          <input type="text" placeholder="Your full name" required />
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" placeholder="your@email.com" required />
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" placeholder="••••••••" required />
+        </div>
+        <button type="submit" class="btn-modal-submit">Create Account</button>
+      </form>
+      <p class="modal-switch">Already have an account? <a href="#"
+          onclick="switchModal('signupModal','loginModal')">Login</a></p>
     </div>
   </div>
-</div>
 
-<!-- Admin Upload Modal -->
-<div class="modal-overlay" id="adminUploadModal">
-  <div class="modal-box">
-    <button class="modal-close" onclick="closeModal('adminUploadModal')">✕</button>
-    <div class="modal-header">
-      <h2>🔐 Admin Upload</h2>
-      <p>Upload content to the website</p>
+  <!-- PDF Viewer Modal -->
+  <div class="modal-overlay" id="pdfModal">
+    <div class="modal-box pdf-modal">
+      <button class="modal-close" onclick="closeModal('pdfModal')">✕</button>
+      <h2 id="pdfModalTitle">Document Viewer</h2>
+      <div class="pdf-placeholder">
+        <div class="pdf-icon">📄</div>
+        <p id="pdfDocName">Document name</p>
+        <p class="pdf-note">PDF/file will display here once uploaded by admin.</p>
+      </div>
     </div>
-    <form onsubmit="handleAdminUpload(event)">
-      <div class="form-group">
-        <label>Admin Password</label>
-        <input type="password" id="adminPass" placeholder="Enter admin password" required />
-      </div>
-      <div class="form-group">
-        <label>Content Type</label>
-        <select id="uploadType">
-          <option>Poster</option>
-          <option>Magazine</option>
-          <option>Report</option>
-          <option>Event Photo</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label>Title / Description</label>
-        <input type="text" id="uploadTitle" placeholder="Content title or description" required />
-      </div>
-      <div class="form-group">
-        <label>Upload File</label>
-        <input type="file" id="uploadFile" accept=".pdf,.png,.jpg,.jpeg,.webp" required />
-      </div>
-      <button type="submit" class="btn-modal-submit">Upload Content</button>
-    </form>
   </div>
-</div>
+
+  <!-- Domain Members Modal -->
+  <div class="modal-overlay" id="domainModal">
+    <div class="modal-box domain-modal">
+      <button class="modal-close" onclick="closeModal('domainModal')">✕</button>
+      <h2 id="domainModalTitle">Team Members</h2>
+      <div class="domain-members-grid" id="domainMembersGrid">
+        <!-- Members injected by JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Admin Upload Modal -->
+  <div class="modal-overlay" id="adminUploadModal">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeModal('adminUploadModal')">✕</button>
+      <div class="modal-header">
+        <h2>🔐 Admin Upload</h2>
+        <p>Upload content to the website</p>
+      </div>
+      <form onsubmit="handleAdminUpload(event)">
+        <div class="form-group">
+          <label>Admin Password</label>
+          <input type="password" id="adminPass" placeholder="Enter admin password" required />
+        </div>
+        <div class="form-group">
+          <label>Content Type</label>
+          <select id="uploadType">
+            <option>Poster</option>
+            <option>Magazine</option>
+            <option>Report</option>
+            <option>Event Photo</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Title / Description</label>
+          <input type="text" id="uploadTitle" placeholder="Content title or description" required />
+        </div>
+        <div class="form-group">
+          <label>Upload File</label>
+          <input type="file" id="uploadFile" accept=".pdf,.png,.jpg,.jpeg,.webp" required />
+        </div>
+        <button type="submit" class="btn-modal-submit">Upload Content</button>
+      </form>
+    </div>
+  </div>
 
 
-<!-- Toast Notification -->
-<div class="toast" id="toast"></div>
+  <!-- Toast Notification -->
+  <div class="toast" id="toast"></div>
 
-<script src="https://unpkg.com/@supabase/supabase-js@2"></script>
-<script src="assets/js/supabase.js"></script>
-<script src="assets/js/main.js"></script>
+  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+  <script src="assets/js/supabase.js"></script>
+  <script src="assets/js/main.js"></script>
 
 
 
-<!-- 1. Supabase CDN -->
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <!-- 1. Supabase CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-<!-- 2. Initialize Supabase -->
-<script>
-const supabaseClient = window.supabase.createClient(
-  "https://aqpnbdyrxxjkjalnqgty.supabase.co",
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFxcG5iZHlyeHhqa2phbG5xZ3R5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQwMjE5MzQsImV4cCI6MjA4OTU5NzkzNH0.5BLsC1b3hhkiR2Mh99t1Qi448Kc3Ai3DvMCvejuYq7o"
-);
-</script>
+  <!-- 2. Initialize Supabase -->
+  <script>
+    const supabaseClient = window.supabase.createClient(
+      "https://aqpnbdyrxxjkjalnqgty.supabase.co",
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFxcG5iZHlyeHhqa2phbG5xZ3R5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQwMjE5MzQsImV4cCI6MjA4OTU5NzkzNH0.5BLsC1b3hhkiR2Mh99t1Qi448Kc3Ai3DvMCvejuYq7o"
+    );
+  </script>
 
 </body>
+
 </html>
