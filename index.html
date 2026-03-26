@@ -385,109 +385,111 @@
      MAGAZINE SECTION
      ============================================================ -->
 
-<section class="section dark-section" id="magazine">
-  <div class="section-label">PUBLICATIONS</div>
-  <h2 class="section-title center-title">Our <span class="accent">Magazine</span></h2>
-  
-  <div class="magazine-grid">
+  <section class="section dark-section" id="magazine">
+    <div class="section-label">PUBLICATIONS</div>
+    <h2 class="section-title center-title">Our <span class="accent">Magazine</span></h2>
 
-    <!-- Magazine 1 -->
-    <div class="magazine-card">
-      <div class="magazine-cover">
-        <div class="magazine-cover-inner">
-          <div class="magazine-title-text">RCC TALKIES</div>
-          <div class="magazine-edition">Volume I · 2024</div>
-          <div class="magazine-cover-decor">◆◆◆</div>
+    <div class="magazine-grid">
+
+      <!-- Magazine 1 -->
+      <div class="magazine-card">
+        <div class="magazine-cover">
+          <div class="magazine-cover-inner">
+            <div class="magazine-title-text">RCC TALKIES</div>
+            <div class="magazine-edition">Volume I · 2024</div>
+            <div class="magazine-cover-decor">◆◆◆</div>
+          </div>
+        </div>
+
+        <div class="magazine-info">
+          <h3>Issue #1 – The Beginning</h3>
+          <p>
+            Our inaugural magazine captures the essence of life at RCCIIT.
+            From academic milestones to cultural celebrations, this edition
+            is a testament to student creativity.
+          </p>
+
+          <button class="btn-pdf">
+            Read Magazine <span>📄</span>
+          </button>
         </div>
       </div>
 
-      <div class="magazine-info">
-        <h3>Issue #1 – The Beginning</h3>
-        <p>
-          Our inaugural magazine captures the essence of life at RCCIIT. 
-          From academic milestones to cultural celebrations, this edition 
-          is a testament to student creativity.
-        </p>
+      <!-- Magazine 2 -->
+      <div class="magazine-card">
+        <div class="magazine-cover" style="background: linear-gradient(135deg, #1a1a2e, #16213e);">
+          <div class="magazine-cover-inner">
+            <div class="magazine-title-text">RCC TALKIES</div>
+            <div class="magazine-edition">Volume II · 2025</div>
+            <div class="magazine-cover-decor">★★★</div>
+          </div>
+        </div>
 
-        <button class="btn-pdf">
-          Read Magazine <span>📄</span>
-        </button>
-      </div>
-    </div>
+        <div class="magazine-info">
+          <h3>Issue #2 – Tech & Culture</h3>
+          <p>
+            The second edition dives into the world of technology fests,
+            cultural programs, and the stories of students who made RCCIIT
+            proud this year.
+          </p>
 
-    <!-- Magazine 2 -->
-    <div class="magazine-card">
-      <div class="magazine-cover" style="background: linear-gradient(135deg, #1a1a2e, #16213e);">
-        <div class="magazine-cover-inner">
-          <div class="magazine-title-text">RCC TALKIES</div>
-          <div class="magazine-edition">Volume II · 2025</div>
-          <div class="magazine-cover-decor">★★★</div>
+          <button class="btn-pdf" onclick="openPDF()">
+            Read Magazine <span>📄</span>
+          </button>
         </div>
       </div>
 
-      <div class="magazine-info">
-        <h3>Issue #2 – Tech & Culture</h3>
-        <p>
-          The second edition dives into the world of technology fests, 
-          cultural programs, and the stories of students who made RCCIIT 
-          proud this year.
-        </p>
-
-       <button class="btn-pdf" onclick="openPDF()">
-          Read Magazine <span>📄</span>
+      <!-- Upload Section -->
+      <div class="magazine-upload">
+        <div class="upload-icon">📚</div>
+        <p>New magazine editions will be published here.</p>
+        <button class="btn-admin">
+          Upload Magazine (Admin)
         </button>
       </div>
+
     </div>
-
-    <!-- Upload Section -->
-    <div class="magazine-upload">
-      <div class="upload-icon">📚</div>
-      <p>New magazine editions will be published here.</p>
-      <button class="btn-admin">
-        Upload Magazine (Admin)
-      </button>
-    </div>
-
-  </div>
-</section>
+  </section>
 
 
-<!-- ============================================================
+  <!-- ============================================================
      PDF MODAL (GOOGLE DRIVE EMBED)
      ============================================================ -->
-<div id="pdfModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:#000000cc; z-index:9999;">
-  
-  <div style="position:relative; width:80%; height:90%; margin:3% auto; background:#fff; border-radius:10px; overflow:hidden;">
-    
-    <!-- Close Button -->
-    <span onclick="closePDF()" 
-          style="position:absolute; top:10px; right:20px; font-size:30px; cursor:pointer; z-index:10;">
-      &times;
-    </span>
+  <div id="pdfModal"
+    style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:#000000cc; z-index:9999;">
 
-    <!-- ✅ WORKING PDF (Google Drive Embed) -->
-    <iframe src="https://drive.google.com/file/d/1ZkPXO4u8fEg17VuH0nf5ND19pkq8ozi7/preview"
-            style="width:100%; height:100%; border:none;">
-    </iframe>
+    <div
+      style="position:relative; width:80%; height:90%; margin:3% auto; background:#fff; border-radius:10px; overflow:hidden;">
+
+      <!-- Close Button -->
+      <span onclick="closePDF()"
+        style="position:absolute; top:10px; right:20px; font-size:30px; cursor:pointer; z-index:10;">
+        &times;
+      </span>
+
+      <!-- ✅ WORKING PDF (Google Drive Embed) -->
+      <iframe src="https://drive.google.com/file/d/1ZkPXO4u8fEg17VuH0nf5ND19pkq8ozi7/preview"
+        style="width:100%; height:100%; border:none;">
+      </iframe>
+
+    </div>
 
   </div>
 
-</div>
 
-
-<!-- ============================================================
+  <!-- ============================================================
      JAVASCRIPT
      ============================================================ -->
-<script>
-function openPDF() {
-  document.getElementById("pdfModal").style.display = "block";
-}
+  <script>
+    function openPDF() {
+      document.getElementById("pdfModal").style.display = "block";
+    }
 
-function closePDF() {
-  document.getElementById("pdfModal").style.display = "none";
-}
-</script>
-<!-- ============================================================
+    function closePDF() {
+      document.getElementById("pdfModal").style.display = "none";
+    }
+  </script>
+  <!-- ============================================================
     REPORTS SECTION
 ============================================================ -->
   <section class="section" id="reports">
@@ -925,7 +927,7 @@ function closePDF() {
 
       <!-- Faculty Advisors -->
       <div class="members-panel active" id="faculty-panel">
-        <div id="faculty" class="faculty-domain">
+        <div id="faculty" class="faculty-grid">
           <!-- 1st: Faculty Advisor -->
           <div class="member-float-card">
             <div class="member-avatar">
