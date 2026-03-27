@@ -1049,6 +1049,9 @@ body {
   transition: all 0.4s ease;
 
   transform-style: preserve-3d;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 .poster-card::before {
   content: "";
@@ -1070,7 +1073,7 @@ body {
     0 0 30px rgba(201,168,76,0.15);
 }
 .poster-img-placeholder {
-  height: 400px;
+  height: 550px;
   position: relative;
   overflow: hidden;
 }
@@ -1107,10 +1110,16 @@ body {
   transform: scale(1.08);
 }
 .poster-desc {
-  padding: 1.2rem;
+  padding: 1.5rem;
   color: rgba(255,255,255,0.75);
-  font-size: 0.9rem;
-  line-height: 1.6;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: rgba(0,0,0,0.2);
 }
 .poster-img-placeholder::after {
   content: "";
