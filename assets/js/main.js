@@ -773,13 +773,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
   async function updateNavbar() {
     const user = await checkUser();
-    const nav = document.querySelector(".nav-auth");
+    const navAuth = document.getElementById("nav-auth");
+    const userProfile = document.getElementById("userProfile");
+    const userAvatar = document.getElementById("userAvatar");
+    const userEmailDisplay = document.getElementById("userEmailDisplay");
 
     if (user) {
-      nav.innerHTML = `
-        <span style="color:#c9a84c;">👤 ${user.email}</span>
-        <button onclick="logout()">Logout</button>
-      `;
+      // Hide login/signup buttons
+      navAuth.style.display = "none";
+      // Show user profile with avatar
+      userProfile.style.display = "flex";
+      
+      // Get first letter of email in uppercase
+      const firstLetter = user.email.charAt(0).toUpperCase();
+      userAvatar.textContent = firstLetter;
+      userEmailDisplay.textContent = user.email;
+    } else {
+      // Show login/signup buttons
+      navAuth.style.display = "flex";
+      // Hide user profile
+      userProfile.style.display = "none";
     }
   }
 
@@ -791,6 +804,23 @@ document.addEventListener("DOMContentLoaded", () => {
     location.reload();
   };
 
+});
+
+// Toggle user menu dropdown
+function toggleUserMenu() {
+  const userMenu = document.getElementById("userMenu");
+  userMenu.classList.toggle("show");
+}
+
+// Close user menu when clicking outside
+document.addEventListener("click", (e) => {
+  const userProfile = document.getElementById("userProfile");
+  const userMenu = document.getElementById("userMenu");
+  
+  // Check if click is outside the user profile area
+  if (userProfile && userProfile.style.display !== "none" && !userProfile.contains(e.target)) {
+    userMenu.classList.remove("show");
+  }
 });
 function openModal(id) {
   document.getElementById(id).style.display = "block";
@@ -814,7 +844,22 @@ document.querySelector(".google-btn").addEventListener("click", async () => {
 });
 supabaseClient.auth.onAuthStateChange((event, session) => {
   if (session) {
-    updateNavbar();
+    // Get the current user and update navbar
+    supabaseClient.auth.getUser().then(({ data: { user } }) => {
+      if (user) {
+        const userAvatar = document.getElementById("userAvatar");
+        const userEmailDisplay = document.getElementById("userEmailDisplay");
+        const navAuth = document.getElementById("nav-auth");
+        const userProfile = document.getElementById("userProfile");
+        
+        navAuth.style.display = "none";
+        userProfile.style.display = "flex";
+        
+        const firstLetter = user.email.charAt(0).toUpperCase();
+        userAvatar.textContent = firstLetter;
+        userEmailDisplay.textContent = user.email;
+      }
+    });
   }
 });
 async function signInWithGoogle() {

@@ -76,9 +76,17 @@
       </li>
       <li><a href="#contact" class="nav-link">Contact</a></li>
     </ul>
-    <div class="nav-auth">
+    <div class="nav-auth" id="nav-auth">
       <button class="btn-login" onclick="openModal('loginModal')">Login</button>
       <button class="btn-signup" onclick="openModal('signupModal')">Sign Up</button>
+    </div>
+    
+    <div class="user-profile" id="userProfile" style="display:none;">
+      <div class="user-avatar" id="userAvatar" onclick="toggleUserMenu()"></div>
+      <div class="user-menu" id="userMenu">
+        <div class="user-email" id="userEmailDisplay"></div>
+        <button class="user-logout-btn" onclick="logout()">Logout</button>
+      </div>
     </div>
     <button class="hamburger" id="hamburger">&#9776;</button>
   </nav>
@@ -882,94 +890,95 @@
 
 
       </div>
+    </div>
 
-      <!-- Sub-Core Members -->
-      <div class="members-panel" id="subcore-panel">
-        <div id="subcore" class="subcore-domains">
-          <div class="domain-card" onclick="openDomainModal('Tech Team')">
-            <div class="domain-icon">💻</div>
-            <h3>Tech Team</h3>
-            <p>Web, app development & digital infrastructure</p>
-            <span class="domain-count">6 members</span>
+    <!-- Sub-Core Members -->
+    <div class="members-panel" id="subcore-panel">
+      <div id="subcore" class="subcore-domains">
+        <div class="domain-card" onclick="openDomainModal('Tech Team')">
+          <div class="domain-icon">💻</div>
+          <h3>Tech Team</h3>
+          <p>Web, app development & digital infrastructure</p>
+          <span class="domain-count">6 members</span>
+        </div>
+        <div class="domain-card" onclick="openDomainModal('Graphics Team')">
+          <div class="domain-icon">🎨</div>
+          <h3>Graphics Team</h3>
+          <p>Poster designing, branding & visual media</p>
+          <span class="domain-count">5 members</span>
+        </div>
+        <div class="domain-card" onclick="openDomainModal('Content Team')">
+          <div class="domain-icon">✍️</div>
+          <h3>Content Team</h3>
+          <p>Article writing, reporting & social media content</p>
+          <span class="domain-count">7 members</span>
+        </div>
+        <div class="domain-card" onclick="openDomainModal('Photography Team')">
+          <div class="domain-icon">📷</div>
+          <h3>Photography Team</h3>
+          <p>Event photography, videography & editing</p>
+          <span class="domain-count">4 members</span>
+        </div>
+        <div class="domain-card" onclick="openDomainModal('Social Media Team')">
+          <div class="domain-icon">📱</div>
+          <h3>Social Media Team</h3>
+          <p>Instagram, Facebook, YouTube management</p>
+          <span class="domain-count">5 members</span>
+        </div>
+        <div class="domain-card" onclick="openDomainModal('PR Team')">
+          <div class="domain-icon">🤝</div>
+          <h3>PR & Outreach Team</h3>
+          <p>Public relations, sponsorships & collaboration</p>
+          <span class="domain-count">4 members</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Faculty Advisors -->
+    <div class="members-panel" id="faculty-panel">
+      <div id="faculty" class="faculty-grid">
+        <!-- 1st: Faculty Advisor -->
+        <div class="member-float-card">
+          <div class="member-avatar">
+            <img src="assets/faculty images/ANWESHA BASU.jpeg" alt="ANWESHA BASU" />
           </div>
-          <div class="domain-card" onclick="openDomainModal('Graphics Team')">
-            <div class="domain-icon">🎨</div>
-            <h3>Graphics Team</h3>
-            <p>Poster designing, branding & visual media</p>
-            <span class="domain-count">5 members</span>
+          <div class="member-info">
+            <h3 class="member-name">ANWESHA BASU</h3>
+            <p class="member-pos">Faculty Advisor</p>
           </div>
-          <div class="domain-card" onclick="openDomainModal('Content Team')">
-            <div class="domain-icon">✍️</div>
-            <h3>Content Team</h3>
-            <p>Article writing, reporting & social media content</p>
-            <span class="domain-count">7 members</span>
+        </div>
+        <!-- 2nd: Faculty Advisor -->
+        <div class="member-float-card">
+          <div class="member-avatar">
+            <img src="assets/faculty images/Dr. Anirban Mukherjee.jpeg" alt="Dr. Anirban Mukherjee" />
           </div>
-          <div class="domain-card" onclick="openDomainModal('Photography Team')">
-            <div class="domain-icon">📷</div>
-            <h3>Photography Team</h3>
-            <p>Event photography, videography & editing</p>
-            <span class="domain-count">4 members</span>
+          <div class="member-info">
+            <h3 class="member-name">Dr. Anirban Mukherjee</h3>
+            <p class="member-pos">Faculty Advisor</p>
           </div>
-          <div class="domain-card" onclick="openDomainModal('Social Media Team')">
-            <div class="domain-icon">📱</div>
-            <h3>Social Media Team</h3>
-            <p>Instagram, Facebook, YouTube management</p>
-            <span class="domain-count">5 members</span>
+        </div>
+        <!-- 3rd: Faculty Advisor -->
+        <div class="member-float-card">
+          <div class="member-avatar">
+            <img src="assets/faculty images/SOHINI SEN.jpeg" alt="SOHINI SEN" />
           </div>
-          <div class="domain-card" onclick="openDomainModal('PR Team')">
-            <div class="domain-icon">🤝</div>
-            <h3>PR & Outreach Team</h3>
-            <p>Public relations, sponsorships & collaboration</p>
-            <span class="domain-count">4 members</span>
+          <div class="member-info">
+            <h3 class="member-name">SOHINI SEN</h3>
+            <p class="member-pos">Faculty Advisor</p>
+          </div>
+        </div>
+        <!-- 4th: Faculty Advisor -->
+        <div class="member-float-card">
+          <div class="member-avatar">
+            <img src="assets/faculty images/TASMINA YASMIN.jpeg" alt="TASMINA YASMIN" />
+          </div>
+          <div class="member-info">
+            <h3 class="member-name">TASMINA YASMIN</h3>
+            <p class="member-pos">Faculty Advisor</p>
           </div>
         </div>
       </div>
-
-      <!-- Faculty Advisors -->
-      <div class="members-panel active" id="faculty-panel">
-        <div id="faculty" class="faculty-grid">
-          <!-- 1st: Faculty Advisor -->
-          <div class="member-float-card">
-            <div class="member-avatar">
-              <img src="assets/faculty images/ANWESHA BASU.jpeg" alt="ANWESHA BASU" />
-            </div>
-            <div class="member-info">
-              <h3 class="member-name">ANWESHA BASU</h3>
-              <p class="member-pos">Faculty Advisor</p>
-            </div>
-          </div>
-          <!-- 2nd: Faculty Advisor -->
-          <div class="member-float-card">
-            <div class="member-avatar">
-              <img src="assets/faculty images/Dr. Anirban Mukherjee.jpeg" alt="Dr. Anirban Mukherjee" />
-            </div>
-            <div class="member-info">
-              <h3 class="member-name">Dr. Anirban Mukherjee</h3>
-              <p class="member-pos">Faculty Advisor</p>
-            </div>
-          </div>
-          <!-- 3rd: Faculty Advisor -->
-          <div class="member-float-card">
-            <div class="member-avatar">
-              <img src="assets/faculty images/SOHINI SEN.jpeg" alt="SOHINI SEN" />
-            </div>
-            <div class="member-info">
-              <h3 class="member-name">SOHINI SEN</h3>
-              <p class="member-pos">Faculty Advisor</p>
-            </div>
-          </div>
-          <!-- 4th: Faculty Advisor -->
-          <div class="member-float-card">
-            <div class="member-avatar">
-              <img src="assets/faculty images/TASMINA YASMIN.jpeg" alt="TASMINA YASMIN" />
-            </div>
-            <div class="member-info">
-              <h3 class="member-name">TASMINA YASMIN</h3>
-              <p class="member-pos">Faculty Advisor</p>
-            </div>
-          </div>
-        </div>
-      </div>
+    </div>
   </section>
 
   <!-- ============================================================
