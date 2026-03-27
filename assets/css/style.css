@@ -1201,13 +1201,21 @@ body {
   margin-top: 2rem;
 }
 .report-card {
-  background: rgba(3, 3, 10, 0.674);
-  border: 1px solid rgba(201,168,76,0.12);
-  border-radius: 14px;
+  background: rgba(8, 26, 58, 0.58); /* dark blue matte glass */
+  border: 1px solid rgba(142, 184, 255, 0.25);
+  border-radius: 16px;
   padding: 1.8rem 1.5rem;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 12px 40px rgba(4, 13, 35, 0.45);
   transition: var(--transition);
 }
-.report-card:hover { background: rgba(201,168,76,0.06); border-color: rgba(201,168,76,0.3); transform: translateY(-5px); }
+.report-card:hover {
+  background: rgba(14, 34, 78, 0.7);
+  border-color: rgba(123, 173, 255, 0.55);
+  box-shadow: 0 14px 45px rgba(4, 13, 35, 0.55);
+  transform: translateY(-3px);
+}
 .report-icon { font-size: 2.5rem; margin-bottom: 0.8rem; }
 .report-card h3 { font-family: var(--font-serif); font-size: 1rem; color: var(--white); margin-bottom: 0.5rem; }
 .report-card p { color: rgba(255,255,255,0.55); font-size: 0.82rem; margin-bottom: 1rem; line-height: 1.7; }
@@ -1234,22 +1242,36 @@ body {
 }
 
 /* BUTTONS */
-.btn-pdf, .btn-view, .btn-admin {
+.btn-pdf, .btn-view, .btn-admin, .btn-report {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
   padding: 0.55rem 1.2rem;
-  border-radius: 8px;
-  font-size: 0.82rem;
-  font-weight: 600;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 700;
   cursor: pointer;
   transition: var(--transition);
   border: none;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.7px;
+  font-family: 'Inter', sans-serif;
 }
 .btn-pdf, .btn-view {
   background: var(--gold);
   color: var(--ink);
+}
+.btn-report {
+  background: rgba(12, 28, 62, 0.75);
+  color: #fff;
+  border: 1px solid #f4d652;
+  box-shadow: 0 8px 24px rgba(2, 10, 28, 0.45);
+}
+.btn-report:hover {
+  background: rgba(22, 44, 95, 0.82);
+  border-color: #f4d652;
+  color: #fffeef;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 36px rgba(3, 14, 40, 0.55);
 }
 .btn-pdf:hover, .btn-view:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: var(--glow); }
 .btn-admin {
@@ -1292,6 +1314,29 @@ body {
 .events-panel.active, .members-panel.active { display: block; }
 
 /* Internal events */
+.internal-event-highlights {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin: 0.7rem 0 1.5rem;
+}
+.internal-event-highlight-btn {
+  background: transparent;
+  border: 1.3px solid rgba(201, 168, 76, 0.45);
+  color: rgba(255,255,255,0.8);
+  padding: 0.52rem 1.2rem;
+  border-radius: 30px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+.internal-event-highlight-btn.active,
+.internal-event-highlight-btn:hover {
+  background: var(--gold);
+  color: var(--ink);
+  border-color: var(--gold);
+  box-shadow: var(--glow);
+}
 .internal-events-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -1304,7 +1349,11 @@ body {
   padding: 2rem;
   transition: var(--transition);
 }
-.event-main-card:hover { border-color: rgba(201,168,76,0.3); transform: translateY(-4px); }
+.event-main-card:hover {
+  border-color: rgba(255, 215, 0, 0.95);
+  box-shadow: 0 0 25px rgba(255, 215, 0, 0.45);
+  transform: translateY(-4px) scale(1.02);
+}
 .event-badge {
   display: inline-block;
   background: rgba(201,168,76,0.1);
@@ -1411,9 +1460,10 @@ body {
   padding: 2rem 0;
 }
 
-.member-float-card {
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(201,168,76,0.15);
+.core-members-grid .member-float-card,
+.faculty-grid .member-float-card {
+  background: rgba(10, 20, 40, 0.45);
+  border: 1px solid rgba(100, 130, 200, 0.35);
   border-radius: 20px;
   padding: 2rem 1.5rem;
   text-align: center;
@@ -1422,7 +1472,21 @@ body {
   width: 200px;
   position: relative;
   overflow: hidden;
-  backdrop-filter: blur(5px);
+  backdrop-filter: blur(14px);
+}
+
+.member-float-card {
+  background: rgba(130, 175, 230, 0.42);
+  border: 1px solid rgba(175, 205, 235, 0.5);
+  border-radius: 20px;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  transition: all 0.22s cubic-bezier(0.4, 0.0, 0.2, 1);
+  animation: memberFloat 4.2s ease-in-out infinite;
+  width: 200px;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(12px);
 }
 .member-float-card:nth-child(1) { animation-delay: 0s; }
 .member-float-card:nth-child(2) { animation-delay: 0.4s; }
@@ -1433,15 +1497,18 @@ body {
 
 @keyframes memberFloat {
   0%, 100% { transform: translateY(0) rotate(0deg); }
-  33% { transform: translateY(-10px) rotate(1deg); }
-  66% { transform: translateY(-5px) rotate(-1deg); }
+  33% { transform: translateY(-8px) rotate(0.8deg); }
+  66% { transform: translateY(-4px) rotate(-0.8deg); }
 }
 .member-float-card:hover {
-  background: rgba(201,168,76,0.1);
-  border-color: var(--gold);
-  box-shadow: 0 15px 45px rgba(201,168,76,0.25);
+  background: rgba(150, 100, 230, 0.4);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-color: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 18px 40px rgba(150, 100, 230, 0.3);
   animation-play-state: paused;
-  transform: translateY(-15px) scale(1.05);
+  transform: translateY(-10px) scale(1.045);
+  transition: all 0.22s cubic-bezier(0.4, 0.0, 0.2, 1);
 }
 
 .member-avatar {
@@ -1519,11 +1586,34 @@ body {
 /* Faculty */
 .faculty-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, minmax(220px, 1fr));
   gap: 2rem;
-  max-width: 800px;
+  justify-content: center;
+  justify-items: center;
+  align-items: start;
+  max-width: 960px;
   margin: 0 auto;
+  padding: 1rem 0;
+  text-align: center;
 }
+
+@media (max-width: 780px) {
+  .faculty-grid {
+    grid-template-columns: 1fr;
+    max-width: 340px;
+  }
+}
+
+.core-members-grid {
+  justify-content: center;
+  justify-items: center;
+  text-align: center;
+}
+
+.member-info, .member-name, .member-pos {
+  text-align: center;
+}
+
 .faculty-card {
   background: rgba(255,255,255,0.03);
   border: 1px solid rgba(201,168,76,0.12);
@@ -1901,7 +1991,7 @@ body {
   .reports-grid { grid-template-columns: 1fr; }
   .subcore-domains { grid-template-columns: 1fr; }
   .core-members-grid { grid-template-columns: repeat(2, 1fr); }
-  .faculty-grid { grid-template-columns: 1fr; max-width: 300px; }
+  .faculty-grid { grid-template-columns: 1fr; max-width: 320px; }
   .hero-title { font-size: 2.8rem; }
   .college-stats { grid-template-columns: repeat(2, 1fr); }
   .domain-members-grid { grid-template-columns: repeat(2, 1fr); }

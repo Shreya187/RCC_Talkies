@@ -56,14 +56,14 @@
         <a href="#events" class="nav-link dropdown-toggle">Events ▾</a>
         <ul class="dropdown-menu">
           <li class="dropdown-sub">
-            <a href="#internal-events">Internal Events ▸</a>
+            <a href="#events" onclick="switchEventTab('internal')">Internal Events ▸</a>
             <ul class="dropdown-menu sub-menu">
-              <li><a href="#got">GOT – Sports Fest</a></li>
-              <li><a href="#techtrix">TechTrix – Tech Fest</a></li>
-              <li><a href="#regalia">Regalia – Cultural Fest</a></li>
+              <li><a href="#got" onclick="goToInternalEvent('got'); return false;">GOT – Sports Fest</a></li>
+              <li><a href="#techtrix" onclick="goToInternalEvent('techtrix'); return false;">TechTrix – Tech Fest</a></li>
+              <li><a href="#regalia" onclick="goToInternalEvent('regalia'); return false;">Regalia – Cultural Fest</a></li>
             </ul>
           </li>
-          <li><a href="#external-events">External Events</a></li>
+          <li><a href="#events" onclick="switchEventTab('external')">External Events</a></li>
         </ul>
       </li>
       <li class="dropdown">
@@ -510,21 +510,21 @@
         <h3>GOT 2024 Sports Report</h3>
         <p>Comprehensive coverage of the annual sports fest including event highlights, winners, and photo gallery.</p>
         <div class="report-meta"><span class="tag">PDF</span><span class="tag">Sports</span></div>
-        <button onclick="window.open('GOT.pdf')">View Report</button>
+        <button class="btn-report btn-view" onclick="window.open('GOT.pdf')">View Report</button>
       </div>
       <div class="report-card">
         <div class="report-icon">💻</div>
         <h3>TechTrix 2024 Report</h3>
         <p>Full report on the technical fest – hackathon results, project expo winners, and cultural night recap.</p>
         <div class="report-meta"><span class="tag">PDF</span><span class="tag">Tech</span></div>
-        <button onclick="window.open('techtrix.pdf')">View Report</button>
+        <button class="btn-report btn-view" onclick="window.open('techtrix.pdf')">View Report</button>
       </div>
       <div class="report-card">
         <div class="report-icon">🎭</div>
         <h3>Regalia 2024 Report</h3>
         <p>Cultural fest coverage including dance performances, music events, drama showcases and celebrity night.</p>
         <div class="report-meta"><span class="tag">PDF</span><span class="tag">Cultural</span></div>
-        <button onclick="window.open('regalia.pdf')">View Report</button>
+        <button class="btn-report btn-view" onclick="window.open('regalia.pdf')">View Report</button>
       </div>
       <div class="report-upload-card">
         <div class="upload-icon">📂</div>
@@ -964,7 +964,7 @@
           </div>
           <div class="member-info">
             <h3 class="member-name">SOHINI SEN</h3>
-            <p class="member-pos">Faculty Advisor</p>
+            <p class="member-pos">Faculty Coordinator</p>
           </div>
         </div>
         <!-- 4th: Faculty Advisor -->
@@ -974,7 +974,7 @@
           </div>
           <div class="member-info">
             <h3 class="member-name">TASMINA YASMIN</h3>
-            <p class="member-pos">Faculty Advisor</p>
+            <p class="member-pos">Faculty Coordinator</p>
           </div>
         </div>
       </div>

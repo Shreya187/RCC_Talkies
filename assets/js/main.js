@@ -340,6 +340,40 @@ function switchEventTab(tab) {
   if (activePanel) activePanel.classList.add('active');
 }
 
+function selectInternalEvent(eventId) {
+  switchEventTab('internal');
+
+  document.querySelectorAll('.internal-event-highlight-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.event === eventId);
+  });
+
+  const card = document.getElementById(eventId);
+  if (!card) return;
+
+  card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function goToInternalEvent(eventId) {
+  selectInternalEvent(eventId);
+}
+
+function initReportButtons() {
+  document.querySelectorAll('.btn-report').forEach(btn => {
+    btn.style.fontFamily = 'Playfair Display, serif';
+    btn.style.fontWeight = '800';
+    btn.addEventListener('mouseenter', () => {
+      btn.style.transform = 'translateY(-2px) scale(1.04)';
+      btn.style.boxShadow = '0 16px 32px rgba(20, 70, 150, 0.5)';
+    });
+    btn.addEventListener('mouseleave', () => {
+      btn.style.transform = 'translateY(0) scale(1)';
+      btn.style.boxShadow = '0 8px 24px rgba(3, 14, 40, 0.45)';
+    });
+  });
+}
+
+document.addEventListener('DOMContentLoaded', initReportButtons);
+
 /* ============================================================
    9. YEAR BUTTONS — EVENT NEWS
    ============================================================ */
@@ -664,7 +698,7 @@ function openClubModal(clubId) {
   openModal('clubModal');
 }
 document.addEventListener("DOMContentLoaded", () => {
-  const cards = document.querySelectorAll(".about-card");
+  const cards = document.querySelectorAll(".about-card, .member-float-card");
 
   cards.forEach((card) => {
 
