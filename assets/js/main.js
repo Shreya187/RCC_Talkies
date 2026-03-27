@@ -170,9 +170,19 @@ hamburger.addEventListener('click', () => {
   navLinks.classList.toggle('open');
 });
 
-// Close nav on link click (mobile)
+// Close nav on link click (mobile) + Members quick jump behavior
 document.querySelectorAll('.nav-link').forEach(link => {
-  link.addEventListener('click', () => navLinks.classList.remove('open'));
+  link.addEventListener('click', (e) => {
+    navLinks.classList.remove('open');
+    const target = link.getAttribute('href');
+    if (target === '#core' || target === '#subcore' || target === '#faculty') {
+      e.preventDefault();
+      const tab = target.replace('#', '');
+      switchMemberTab(tab);
+      document.querySelector(target)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      window.location.hash = target;
+    }
+  });
 });
 
 /* ============================================================
