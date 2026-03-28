@@ -1032,11 +1032,12 @@ body {
 
 .poster-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 2.5rem;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
   margin-top: 1rem;
 }
 .poster-card {
+  cursor: pointer;
   position: relative;
   background: rgba(20, 20, 30, 0.55); /* dark glass */
   backdrop-filter: blur(14px);
@@ -1074,7 +1075,7 @@ body {
 }
 .poster-img-placeholder {
   height: auto;
-  min-height: 600px;
+  min-height: 400px;
   position: relative;
   overflow: visible;
   background: linear-gradient(135deg, rgba(20,20,30,0.3), rgba(30,30,40,0.3));
@@ -1149,6 +1150,35 @@ body {
     rgba(0,0,0,0.6),
     transparent
   );
+}
+
+/* Poster Modal Additions */
+.poster-modal-box {
+  background: rgba(14, 14, 22, 0.95) !important;
+  max-width: 1200px !important;
+  width: auto !important;
+  text-align: center;
+  padding: 3rem 2rem 1.5rem 2rem !important; /* Space for close button and bottom padding */
+  border-radius: 12px;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+.poster-modal-img {
+  max-width: 100%;
+  max-height: 85vh;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+  margin-top: 0;
+}
+.poster-modal-caption {
+  color: rgba(255,255,255,0.9);
+  font-size: 1.25rem;
+  margin-top: 1.2rem;
+  margin-bottom: 0;
+  font-family: var(--font-serif);
 }
 
 /* ============================================================
@@ -1308,6 +1338,34 @@ body {
   color: var(--gold);
 }
 .btn-admin:hover { background: rgba(201,168,76,0.1); }
+
+/* Glass Matte Finish for Poster Admin Button */
+.btn-poster-admin {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.6rem 1.5rem;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transition);
+  background: rgba(255, 255, 255, 0.07); /* clear glass matte */
+  border: 1px solid rgba(201, 168, 76, 0.35); /* subtle gold border */
+  color: #fff;
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+}
+
+.btn-poster-admin:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(201, 168, 76, 0.6);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.5);
+}
+
 
 /* ============================================================
    EVENTS SECTION

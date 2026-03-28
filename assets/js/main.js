@@ -255,6 +255,30 @@ document.addEventListener('keydown', (e) => {
 });
 
 /* ============================================================
+   POSTER MODAL
+   ============================================================ */
+function openPosterModal(cardElement) {
+  const img = cardElement.querySelector('.poster-img-placeholder img');
+  const caption = cardElement.querySelector('.poster-desc');
+  
+  if (img) {
+    document.getElementById('posterModalImg').src = img.src;
+    document.getElementById('posterModalImg').style.display = 'inline-block';
+  } else {
+    document.getElementById('posterModalImg').src = '';
+    document.getElementById('posterModalImg').style.display = 'none';
+  }
+  
+  if (caption) {
+    document.getElementById('posterModalCaption').innerHTML = caption.innerHTML;
+  } else {
+    document.getElementById('posterModalCaption').innerHTML = '';
+  }
+  
+  openModal('posterModal');
+}
+
+/* ============================================================
    6. PDF MODAL
    ============================================================ */
 function openPDFModal(type, name) {

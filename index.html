@@ -358,26 +358,28 @@
       <div class="upload-placeholder">
         <div class="upload-icon">🖼️</div>
         <p>Posters will appear here once uploaded by the admin.</p>
-        <button class="btn-admin" onclick="openModal('adminUploadModal')">Upload Poster (Admin)</button>
+        <button class="btn-poster-admin" onclick="openModal('adminUploadModal')">
+          Upload <span style="color: var(--gold-light);">Poster (Admin)</span>
+        </button>
       </div>
     </div>
     <div class="poster-grid" id="posterGrid">
       <!-- Posters will be dynamically added here -->
-      <div class="poster-card">
+      <div class="poster-card" onclick="openPosterModal(this)">
         <div class="poster-img-placeholder">
           <span>Poster 1</span>
           <img src="assets/images/GOT.jpg" alt="GOT" />
         </div>
         <p class="poster-desc poster-desc-gaming">We don’t compete, We dominate...</p>
       </div>
-      <div class="poster-card">
+      <div class="poster-card" onclick="openPosterModal(this)">
         <div class="poster-img-placeholder">
           <span>Poster 2</span>
           <img src="assets/images/techtrix poster.jpg" alt="techtrix" />
         </div>
         <p class="poster-desc poster-desc-gaming">Survive the fall, engineer the future...</p>
       </div>
-      <div class="poster-card">
+      <div class="poster-card" onclick="openPosterModal(this)">
         <div class="poster-img-placeholder">
           <span>Poster 3</span>
         </div>
@@ -1170,6 +1172,15 @@
         </div>
         <button type="submit" class="btn-modal-submit">Upload Content</button>
       </form>
+    </div>
+  </div>
+
+  <!-- Poster Lightbox Modal -->
+  <div class="modal-overlay" id="posterModal">
+    <div class="modal-box poster-modal-box">
+      <button class="modal-close" onclick="closeModal('posterModal')">✕</button>
+      <img id="posterModalImg" src="" alt="Enlarged Poster" class="poster-modal-img" />
+      <p id="posterModalCaption" class="poster-modal-caption"></p>
     </div>
   </div>
 
