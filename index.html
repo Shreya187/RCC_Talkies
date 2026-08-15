@@ -127,20 +127,26 @@
 
       <img src="assets/images/rcc-logo.png" class="auth-logo" />
 
-      <h2>Join RCC Talkies</h2>
-      <p>Login your account to stay updated</p>
+      <h2 id="loginModalTitle">User Login</h2>
+      <p id="loginModalSub">Login your account to stay updated</p>
 
-
-
-
-
+      <div class="auth-tabs">
+        <button type="button" class="auth-tab active" id="tabUserBtn" onclick="switchLoginTab('user')">User Login</button>
+        <button type="button" class="auth-tab" id="tabAdminBtn" onclick="switchLoginTab('admin')">Admin Login</button>
+      </div>
 
       <form id="loginForm">
-        <input type="text" id="loginName" placeholder="Your full name" required />
         <input type="email" id="loginEmail" placeholder="your@email.com" required />
         <input type="password" id="loginPassword" placeholder="Password" required />
 
         <button type="submit" class="auth-btn">Login</button>
+      </form>
+
+      <form id="adminLoginForm" style="display:none;">
+        <input type="text" id="adminLoginId" placeholder="Admin ID (any ID)" required />
+        <input type="password" id="adminLoginPassword" placeholder="Admin Password" required />
+
+        <button type="submit" class="auth-btn">Login as Admin</button>
       </form>
 
       <p class="auth-footer">

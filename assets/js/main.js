@@ -499,6 +499,71 @@ function handleGoogleAuth() {
   showToast('🔗 Google Auth not yet connected to backend.');
 }
 
+/* Common password for every admin login (any admin ID accepted) */
+const ADMIN_PASSWORD = "RCCIIT2026";
+
+/* Keep individual data separate: store each admin's data under their own ID */
+function getAdminId() {
+  return localStorage.getItem("rccTalkies_adminId");
+}
+
+function getAdminData(adminId) {
+  try {
+    return JSON.parse(localStorage.getItem("rccTalkies_adminData_" + adminId)) || {};
+  } catch (e) {
+    return {};
+  }
+}
+
+function setAdminData(adminId, data) {
+  localStorage.setItem("rccTalkies_adminData_" + adminId, JSON.stringify(data));
+}
+
+function switchLoginTab(type) {
+  const isAdmin = type === "admin";
+  document.getElementById("tabUserBtn").classList.toggle("active", !isAdmin);
+  document.getElementById("tabAdminBtn").classList.toggle("active", isAdmin);
+  document.getElementById("loginForm").style.display = isAdmin ? "none" : "block";
+  document.getElementById("adminLoginForm").style.display = isAdmin ? "block" : "none";
+  document.getElementById("loginModalTitle").textContent = isAdmin ? "Admin Login" : "User Login";
+  document.getElementById("loginModalSub").textContent = isAdmin
+    ? "Use any Admin ID with the common password"
+    : "Login your account to stay updated";
+}
+
+function applySessionToNavbar(label, avatarLetter) {
+  const navAuth = document.getElementById("nav-auth");
+  const userProfile = document.getElementById("userProfile");
+  const userAvatar = document.getElementById("userAvatar");
+  const userEmailDisplay = document.getElementById("userEmailDisplay");
+
+  navAuth.style.display = "none";
+  userProfile.style.display = "flex";
+  userAvatar.textContent = (avatarLetter || label.charAt(0)).toUpperCase();
+  userEmailDisplay.textContent = label;
+}
+
+function handleAdminLogin(e) {
+  e.preventDefault();
+  const adminId = document.getElementById("adminLoginId").value.trim();
+  const password = document.getElementById("adminLoginPassword").value;
+
+  if (!adminId) {
+    showToast("❌ Please enter an Admin ID!");
+    return;
+  }
+  if (password !== ADMIN_PASSWORD) {
+    showToast("❌ Incorrect admin password!");
+    return;
+  }
+
+  localStorage.setItem("rccTalkies_adminId", adminId);
+  closeModal("loginModal");
+  e.target.reset();
+  showToast(`✅ Welcome Admin: ${adminId}`);
+  applySessionToNavbar("Admin · " + adminId, adminId.charAt(0));
+}
+
 function handleLogin(e) {
   e.preventDefault();
   closeModal('loginModal');
@@ -514,12 +579,20 @@ function handleSignup(e) {
 function handleAdminUpload(e) {
   e.preventDefault();
   const pass = document.getElementById('adminPass').value;
-  if (pass !== 'admin123') {
+  if (pass !== ADMIN_PASSWORD) {
     showToast('❌ Incorrect admin password!');
     return;
   }
   const title = document.getElementById('uploadTitle').value;
   const type = document.getElementById('uploadType').value;
+
+  /* Record the upload under the current admin's own data */
+  const adminId = getAdminId() || 'unknown-admin';
+  const data = getAdminData(adminId);
+  data.uploads = data.uploads || [];
+  data.uploads.push({ type: type, title: title, at: new Date().toISOString() });
+  setAdminData(adminId, data);
+
   closeModal('adminUploadModal');
   showToast(`✅ ${type} "${title}" uploaded successfully!`);
 }
@@ -837,6 +910,7 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
     location.reload();
   }
 });
+document.getElementById("adminLoginForm").addEventListener("submit", handleAdminLogin);
 document.addEventListener("DOMContentLoaded", () => {
 
   async function checkUser() {
@@ -846,10 +920,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   async function updateNavbar() {
     const user = await checkUser();
+    const adminId = getAdminId();
     const navAuth = document.getElementById("nav-auth");
     const userProfile = document.getElementById("userProfile");
-    const userAvatar = document.getElementById("userAvatar");
-    const userEmailDisplay = document.getElementById("userEmailDisplay");
 
     if (user) {
       // Hide login/signup buttons
@@ -859,8 +932,11 @@ document.addEventListener("DOMContentLoaded", () => {
       
       // Get first letter of email in uppercase
       const firstLetter = user.email.charAt(0).toUpperCase();
-      userAvatar.textContent = firstLetter;
-      userEmailDisplay.textContent = user.email;
+      document.getElementById("userAvatar").textContent = firstLetter;
+      document.getElementById("userEmailDisplay").textContent = user.email;
+    } else if (adminId) {
+      // Show admin session using their individual ID
+      applySessionToNavbar("Admin · " + adminId, adminId.charAt(0));
     } else {
       // Show login/signup buttons
       navAuth.style.display = "flex";
@@ -874,6 +950,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // make logout global (important for onclick)
   window.logout = async function () {
     await supabaseClient.auth.signOut();
+    localStorage.removeItem("rccTalkies_adminId");
     location.reload();
   };
 

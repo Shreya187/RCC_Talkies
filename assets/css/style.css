@@ -439,9 +439,11 @@ body {
 
 .auth-card {
   background: linear-gradient(145deg, #1c1c3c, #14142b);
-  width: 420px;
-  margin: 8% auto;
+  width: min(420px, 94vw);
+  margin: 5vh auto;
   padding: 2.5rem;
+  max-height: 90vh;
+  overflow-y: auto;
   border-radius: 16px;
   text-align: center;
   color: white;
@@ -523,6 +525,37 @@ body {
   right: 15px;
   font-size: 18px;
   cursor: pointer;
+}
+
+.auth-tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.auth-tab {
+  flex: 1;
+  padding: 0.7rem 1rem;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.05);
+  color: #aaa;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.auth-tab:hover {
+  border-color: rgba(201,168,76,0.5);
+  color: #e8c96a;
+}
+
+.auth-tab.active {
+  background: linear-gradient(to right, #c9a84c, #e8c96a);
+  color: black;
+  border-color: transparent;
+  box-shadow: 0 4px 15px rgba(201,168,76,0.3);
 }
 /* ============================================================
    HERO SECTION
@@ -1907,6 +1940,8 @@ body {
   padding: 2.5rem;
   max-width: 440px;
   width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
   position: relative;
   animation: modalSlideUp 0.35s cubic-bezier(0.34,1.56,0.64,1);
 }
@@ -2254,5 +2289,141 @@ body {
 @media(max-width:480px){
   .club-events-grid{grid-template-columns:1fr}
   .club-float-card{min-width:110px}
+}
+
+/* ============================================================
+   MOBILE-FIRST REFINEMENTS
+   Keeps every section fully visible and clean on small screens.
+   ============================================================ */
+* { -webkit-tap-highlight-color: transparent; }
+img, video, canvas { max-width: 100%; }
+input, select, textarea { font-size: 16px; }
+
+@media (max-width: 992px) {
+  .navbar { padding: 0.7rem 1.2rem; }
+  .section { padding: 4rem 1.5rem; }
+  .dark-section { padding: 4rem 1.5rem; }
+  .college-grid { padding: 40px 28px; }
+}
+
+/* Mobile menu: keep dropdowns reachable on touch devices */
+@media (max-width: 900px) {
+  .nav-links.open {
+    max-height: calc(100vh - 60px);
+    overflow-y: auto;
+    padding: 0.75rem;
+    background: rgba(10,10,15,0.99);
+  }
+  .nav-links.open li { width: 100%; }
+  .nav-links.open .dropdown-menu,
+  .nav-links.open .sub-menu {
+    position: static;
+    display: block;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0 0 0 0.9rem;
+    margin: 0.2rem 0;
+    animation: none;
+  }
+  .nav-links.open .nav-link,
+  .nav-links.open .dropdown-menu li a { font-size: 0.9rem; padding: 0.6rem 0.7rem; }
+  .nav-links.open .dropdown-toggle { display: flex; justify-content: space-between; align-items: center; }
+}
+
+@media (max-width: 768px) {
+  /* ---------- Navbar ---------- */
+  .navbar { padding: 0.6rem 1rem; }
+  .nav-logo { width: 36px; height: 36px; }
+  .nav-title { font-size: 1.05rem; letter-spacing: 1px; }
+  .nav-auth { gap: 0.35rem; }
+  .btn-login, .btn-signup { padding: 0.4rem 0.8rem; font-size: 0.75rem; min-height: 38px; }
+
+  /* ---------- Hero ---------- */
+  .hero { padding: 90px 1rem 3rem; }
+  .hero-content { width: 100%; }
+  .logo-float-wrapper { width: 140px; height: 140px; margin-bottom: 1.5rem; }
+  .hero-logo { width: 150px; height: 150px; }
+  .ring-1 { width: 150px; height: 150px; }
+  .ring-2 { width: 180px; height: 180px; }
+  .ring-3 { width: 210px; height: 210px; }
+  .hero-title { letter-spacing: 2px; }
+  .hero-tagline { font-size: 16px; }
+  .ticker-wrap { padding: 0.4rem 1rem; margin-bottom: 1.8rem; max-width: 100%; }
+  .btn-get-started { padding: 0.9rem 1.8rem; font-size: 0.95rem; }
+
+  /* ---------- Sections ---------- */
+  .section { padding: 3.5rem 1.1rem; }
+  .dark-section { padding: 3.5rem 1.1rem; }
+  .section-title { font-size: clamp(1.6rem, 6vw, 2.4rem); }
+  .section-subtitle { font-size: 0.92rem; margin-bottom: 2rem; }
+  .section-label { letter-spacing: 3px; font-size: 0.68rem; }
+
+  /* ---------- College ---------- */
+  .college-section { padding: 60px 0; }
+  .college-grid { padding: 30px 20px; }
+  .college-stats { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+  .college-desc { font-size: 0.9rem; }
+  .img-badge { padding: 6px 12px; font-size: 0.78rem; }
+
+  /* ---------- Grids stack cleanly ---------- */
+  .about-grid { grid-template-columns: 1fr; gap: 1.3rem; margin-top: 2rem; }
+  .internal-events-grid,
+  .external-events-grid,
+  .subcore-domains { grid-template-columns: 1fr; gap: 1.3rem; }
+  .magazine-grid,
+  .reports-grid,
+  .poster-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+  .domain-members-grid { grid-template-columns: repeat(2, 1fr); }
+  .website-builders-grid { grid-template-columns: 1fr; justify-items: center; }
+  .faculty-grid { grid-template-columns: 1fr; max-width: 340px; }
+
+  /* ---------- Events ---------- */
+  .events-tabs, .members-tabs { flex-wrap: wrap; gap: 0.6rem; }
+  .event-tab, .member-tab { padding: 0.55rem 1.2rem; font-size: 0.82rem; }
+  .internal-event-highlights { flex-wrap: wrap; gap: 0.6rem; }
+  .event-name { font-size: 1.6rem; }
+
+  /* ---------- Contact / Footer ---------- */
+  .contact-form { padding: 1.8rem 1.2rem; }
+  .social-links { justify-content: center; }
+  .footer { padding: 2rem 1rem; }
+
+  /* ---------- Modals ---------- */
+  .poster-modal-box { width: 100% !important; padding: 2.2rem 0.8rem 1rem !important; }
+  .pdf-placeholder { padding: 2rem 1rem; }
+  .club-modal-box { padding: 1.8rem 1.2rem; }
+  .club-modal-header { flex-direction: column; text-align: center; gap: 0.8rem; }
+}
+
+@media (max-width: 480px) {
+  .navbar { padding: 0.55rem 0.85rem; }
+  .nav-title { display: none; }
+  .hero { padding: 80px 0.9rem 2.5rem; }
+  .hero-tagline { font-size: 15px; }
+  .logo-float-wrapper { width: 120px; height: 120px; }
+  .hero-logo { width: 130px; height: 130px; }
+  .ring-1 { width: 130px; height: 130px; }
+  .ring-2 { width: 155px; height: 155px; }
+  .ring-3 { width: 180px; height: 180px; }
+  .section, .dark-section { padding: 3rem 1rem; }
+  .college-stats { grid-template-columns: repeat(2, 1fr); }
+  .core-members-grid { gap: 1.2rem; }
+  .core-members-grid .member-float-card,
+  .website-builders-grid .member-float-card { width: 100%; max-width: 220px; }
+  .event-years { flex-wrap: wrap; }
+  .domain-members-grid { grid-template-columns: 1fr; }
+  .club-events-grid { grid-template-columns: 1fr; }
+  .auth-card { padding: 2rem 1.1rem; margin: 4vh auto; }
+  .auth-tabs { gap: 0.35rem; }
+  .auth-tab { padding: 0.6rem 0.5rem; font-size: 0.82rem; }
+  .btn-google, .btn-modal-submit, .btn-submit, .btn-get-started { min-height: 46px; }
+}
+
+@media (max-width: 380px) {
+  .nav-logo { width: 32px; height: 32px; }
+  .btn-login, .btn-signup { padding: 0.35rem 0.6rem; font-size: 0.7rem; }
+  .hero-tagline { font-size: 14px; }
+  .poster-img-placeholder { min-height: 380px; }
 }
 
