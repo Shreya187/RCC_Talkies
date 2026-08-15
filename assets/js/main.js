@@ -171,14 +171,19 @@ hamburger.addEventListener('click', () => {
 });
 
 // Close nav on link click (mobile) + Members quick jump behavior
+const memberQuickJump = {
+  '#core': 'core',
+  '#subcore': 'subcore',
+  '#faculty': 'faculty',
+  '#Website builders': 'Website Builders'
+};
 document.querySelectorAll('.nav-link').forEach(link => {
   link.addEventListener('click', (e) => {
     navLinks.classList.remove('open');
     const target = link.getAttribute('href');
-    if (target === '#core' || target === '#subcore' || target === '#faculty') {
+    if (memberQuickJump[target]) {
       e.preventDefault();
-      const tab = target.replace('#', '');
-      switchMemberTab(tab);
+      switchMemberTab(memberQuickJump[target]);
       document.querySelector(target)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
       window.location.hash = target;
     }
