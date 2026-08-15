@@ -433,6 +433,10 @@ body {
   position: fixed;
   z-index: 999;
   inset: 0;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  overflow-y: auto;
   background: rgba(0,0,0,0.6);
   backdrop-filter: blur(6px);
 }
@@ -440,7 +444,7 @@ body {
 .auth-card {
   background: linear-gradient(145deg, #1c1c3c, #14142b);
   width: min(420px, 94vw);
-  margin: 5vh auto;
+  margin: auto;
   padding: 2.5rem;
   max-height: 90vh;
   overflow-y: auto;
@@ -2414,7 +2418,7 @@ input, select, textarea { font-size: 16px; }
   .event-years { flex-wrap: wrap; }
   .domain-members-grid { grid-template-columns: 1fr; }
   .club-events-grid { grid-template-columns: 1fr; }
-  .auth-card { padding: 2rem 1.1rem; margin: 4vh auto; }
+  .auth-card { padding: 2rem 1.1rem; margin: auto; }
   .auth-tabs { gap: 0.35rem; }
   .auth-tab { padding: 0.6rem 0.5rem; font-size: 0.82rem; }
   .btn-google, .btn-modal-submit, .btn-submit, .btn-get-started { min-height: 46px; }
